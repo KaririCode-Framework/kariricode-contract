@@ -1,0 +1,45 @@
+{
+  "name": "kariri/contract",
+  "description": "The interface code implementations in PHP for the given namespaces and descriptions, following PSR standards, using modern PHP",
+  "keywords": [
+    "contract",
+    "interface",
+    "PSRs",
+    "php",
+    "framework",
+    "kariri"
+  ],
+  "homepage": "https://kariri-php-framework.growthcode.com.br",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Walmir Silva",
+      "email": "walmir.silva@growthcode.com.br"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Kariri\\Contract\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kariri\\Contract\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.51",
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^11.0",
+    "squizlabs/php_codesniffer": "^3.9",
+    "enlightn/security-checker": "^2.0"
+  },
+  "support": {
+    "issues": "https://github.com/Kariri-PHP-Framework/kariri-contract/issues",
+    "source": "https://github.com/Kariri-PHP-Framework/kariri-contract"
+  }
+}

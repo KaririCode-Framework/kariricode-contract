@@ -1,52 +1,60 @@
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+# Arquivos de configuração do sistema
+/.idea/
+*.sublime-project
+*.sublime-workspace
+/.phpunit.result.cache
+/.php_cs.cache
+/.php_cs.dist.cache
+/phpstan.neon.dist
+/phpstan.neon.cache
+/.phpstan.result.cache
 
-# Email spool folder
-/app/spool/*
-
-# Cache, session files and logs (Symfony3)
-/var/cache/*
-/var/logs/*
-/var/sessions/*
-!var/cache/.gitkeep
-!var/logs/.gitkeep
-!var/sessions/.gitkeep
-
-# Logs (Symfony4)
-/var/log/*
-!var/log/.gitkeep
-
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
-
-# Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
+# Dependências
 /vendor/
+/node_modules/
 
-# Assets and user uploads
-/web/bundles/
-/web/uploads/
+# Arquivos específicos do sistema operacional
+.DS_Store
+Thumbs.db
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
-
-# Build data
+# Arquivos de build e compilação
 /build/
+/dist/
+*.log
+*.tlog
+*.tmp
+*.temp
 
-# Composer PHAR
-/composer.phar
+# Arquivos e pastas de ambientes virtuais
+.env
 
-# Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+# Arquivos de cache
+/cache/
+*.cache
+*.class
 
-# Embedded web-server pid file
-/.web-server-pid
+# Arquivos de log
+*.log
+*.sql
+*.sqlite
+
+# Pasta de testes que não devem ser incluídas no repositório
+coverage/
+coverage*
+
+# Arquivos de pacotes
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Outros arquivos e pastas
+*.swp
+*~
+._*
+temp/
+tmp/
+.vscode/launch.json
+.vscode/extensions.json
