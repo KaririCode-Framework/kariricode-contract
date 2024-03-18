@@ -5,6 +5,7 @@
     <rule ref="Generic.Commenting.DocComment">
         <exclude name="Generic.Commenting.DocComment.Missing"/>
         <exclude name="Generic.Commenting.DocComment.Empty"/>
+        <exclude name="Generic.Commenting.DocComment.GroupedTags"/>
         <exclude name="Generic.Commenting.DocComment.MissingShort"/>
         <exclude name="Generic.Commenting.DocComment.ContentAfterOpen"/>
         <exclude name="Generic.Commenting.DocComment.ContentBeforeClose"/>
