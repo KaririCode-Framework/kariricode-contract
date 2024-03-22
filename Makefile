@@ -1,5 +1,5 @@
 # Configurações iniciais
-PHP_SERVICE := kariri-contract
+PHP_SERVICE := kariricode-contract
 DC := docker-compose
 
 # Comando para execução de comandos dentro do container PHP
@@ -133,17 +133,19 @@ run-script: check-environment check-container-running
 	$(EXEC_PHP) php $(SCRIPT)
 	@echo "${GREEN}${CHECK_MARK} Script executado!${NC}"
 
-## cs-fix: Executa o PHP CS Fixer para corrigir o estilo do código
-cs-fix: check-environment check-container-running
-	@echo "${GREEN}${INFO} Corrigindo o estilo do código com PHP CS Fixer...${NC}"
-	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix
-	@echo "${GREEN}${CHECK_MARK} Estilo do código corrigido!${NC}"
-
 ## cs-check: Executa o PHP_CodeSniffer para verificar o estilo do código
 cs-check: check-environment check-container-running
 	@echo "${GREEN}${INFO} Verificando o estilo do código com PHP_CodeSniffer no diretório src/ e tests/...${NC}"
 	$(EXEC_PHP) ./vendor/bin/phpcs src/ tests/
 	@echo "${GREEN}${CHECK_MARK} Verificação de estilo do código concluída!${NC}"
+
+
+## cs-fix: Executa o PHP CS Fixer para corrigir o estilo do código
+cs-fix: check-environment check-container-running
+	@echo "${GREEN}${INFO} Corrigindo o estilo do código com PHP CS Fixer...${NC}"
+	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix
+	$(EXEC_PHP) ./vendor/bin/phpcbf src/ tests/
+	@echo "${GREEN}${CHECK_MARK} Estilo do código corrigido!${NC}"
 
 ## stan: Executa o PHPStan para análise estática do código
 stan: check-environment check-container-running
@@ -158,7 +160,7 @@ security-check: check-environment check-container-running
 	@echo "${GREEN}${CHECK_MARK} Verificação de segurança concluída!${NC}"
 
 ## quality: Executa todos os comandos de qualidade
-quality: check-environment check-container-running cs-fix cs-check stan test security-check 
+quality: check-environment check-container-running cs-check stan test security-check 
 	@echo "${GREEN}${CHECK_MARK} Todos os comandos de qualidade foram executados!${NC}"
 
 ## help: Mostra os passos iniciais e comandos disponíveis
