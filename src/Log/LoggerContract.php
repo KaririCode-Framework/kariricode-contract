@@ -4,10 +4,10 @@
  * Kariri PHP Framework
  *
  * @author Walmir Silva <walmir.silva@growthcode.com.br>
- * @link   https://kariri-php-framework.growthcode.com.br
+ * @link   https://kariricode-php-framework.growthcode.com.br
  */
 
-namespace Kariri\Contract\Log;
+namespace KaririCode\Contract\Log;
 
 /**
  * LoggerContract Interface

@@ -4,12 +4,12 @@
  * Kariri PHP Framework
  *
  * @author Walmir Silva <walmir.silva@growthcode.com.br>
- * @link   https://kariri-php-framework.growthcode.com.br
+ * @link   https://kariricode-php-framework.growthcode.com.br
  */
 
-namespace Kariri\Contract\Provider;
+namespace KaririCode\Contract\Provider;
 
-use Kariri\Contract\Container\ContainerContract;
+use KaririCode\Contract\Container\ContainerContract;
 
 /**
  * ProviderContract Interface

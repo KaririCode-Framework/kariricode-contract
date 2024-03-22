@@ -1,5 +1,5 @@
 # Configurações iniciais
-PHP_SERVICE := kariri-contract
+PHP_SERVICE := kariricode-contract
 DC := docker-compose
 
 # Comando para execução de comandos dentro do container PHP
