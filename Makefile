@@ -1,186 +1,175 @@
-# Configurações iniciais
+# Initial configurations
 PHP_SERVICE := kariricode-contract
 DC := docker-compose
 
-# Comando para execução de comandos dentro do container PHP
+# Command to execute commands inside the PHP container
 EXEC_PHP := $(DC) exec -T php
 
-# Ícones
+# Icons
 CHECK_MARK := ✅
 WARNING := ⚠️
 INFO := ℹ️ 
 
-# Cores
+# Colors
 RED := \033[0;31m
 GREEN := \033[0;32m
 YELLOW := \033[1;33m
 NC := \033[0m # No Color
 
-# Verifica se o Docker está instalado
-CHECK_DOCKER := @command -v docker > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING} Docker não está instalado. Abortando.${NC}"; exit 1; }
-# Verifica se o Docker Compose está instalado
-CHECK_DOCKER_COMPOSE := @command -v docker-compose > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING} Docker Compose não está instalado. Abortando.${NC}"; exit 1; }
-# Função para verificar se o container está rodando
-CHECK_CONTAINER_RUNNING := @docker ps | grep $(PHP_SERVICE) > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING}  O container $(PHP_SERVICE) não está ativo. Execute 'make up' para inicializá-lo.${NC}"; exit 1; }
-# Verifica se o arquivo .env existe
-CHECK_ENV := @test -f .env || { echo >&2 "${YELLOW}${WARNING}  Arquivo .env não encontrado. Execute 'make setup-env' para configurar.${NC}"; exit 1; }
+# Check if Docker is installed
+CHECK_DOCKER := @command -v docker > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING} Docker is not installed. Aborting.${NC}"; exit 1; }
+# Check if Docker Compose is installed
+CHECK_DOCKER_COMPOSE := @command -v docker-compose > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING} Docker Compose is not installed. Aborting.${NC}"; exit 1; }
+# Function to check if the container is running
+CHECK_CONTAINER_RUNNING := @docker ps | grep $(PHP_SERVICE) > /dev/null 2>&1 || { echo >&2 "${YELLOW}${WARNING}  The container $(PHP_SERVICE) is not running. Run 'make up' to start it.${NC}"; exit 1; }
+# Check if the .env file exists
+CHECK_ENV := @test -f .env || { echo >&2 "${YELLOW}${WARNING}  .env file not found. Run 'make setup-env' to configure.${NC}"; exit 1; }
 
-## setup-env: Copia .env.example para .env se este último não existir
+## setup-env: Copy .env.example to .env if the latter does not exist
 setup-env:
-	@test -f .env || (cp .env.example .env && echo "${GREEN}${CHECK_MARK} Arquivo .env criado com sucesso a partir do .env.example${NC}")
+	@test -f .env || (cp .env.example .env && echo "${GREEN}${CHECK_MARK} .env file created successfully from .env.example${NC}")
 
 check-environment:
-	@echo "${GREEN}${INFO} Verificando Docker, Docker Compose e arquivo .env...${NC}"
+	@echo "${GREEN}${INFO} Checking Docker, Docker Compose, and .env file...${NC}"
 	$(CHECK_DOCKER)
 	$(CHECK_DOCKER_COMPOSE)
 	$(CHECK_ENV)
 
 check-container-running:
-	$(CHECK_CONTAINER_RUNNING) 
+	$(CHECK_CONTAINER_RUNNING)
 
-## up: Sobe todos os serviços em background
+## up: Start all services in the background
 up: check-environment
-	@echo "${GREEN}${INFO} Subindo os serviços...${NC}"
+	@echo "${GREEN}${INFO} Starting services...${NC}"
 	@$(DC) up -d
-	@echo "${GREEN}${CHECK_MARK} Serviços em pé!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Services are up!${NC}"
 
-## down: Para e remove todos os containers
+## down: Stop and remove all containers
 down: check-environment
-	@echo "${YELLOW}${INFO} Parando e removendo os serviços...${NC}"
+	@echo "${YELLOW}${INFO} Stopping and removing services...${NC}"
 	@$(DC) down
-	@echo "${GREEN}${CHECK_MARK} Serviços parados e removidos!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Services stopped and removed!${NC}"
 
-## down: Para e remove todos os containers
+## build: Build Docker images
 build: check-environment
-	@echo "${YELLOW}${INFO} Buildando serviços...${NC}"
+	@echo "${YELLOW}${INFO} Building services...${NC}"
 	@$(DC) build
-	@echo "${GREEN}${CHECK_MARK} Serviços buildados!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Services built!${NC}"
 
-## status: Exibe o status dos containers
+## logs: Show container logs
 logs: check-environment
-	@echo "${YELLOW}${INFO} Logs dos containers:${NC}"
+	@echo "${YELLOW}${INFO} Container logs:${NC}"
 	@$(DC) logs
 
-## re-build: Reconstrói e reinicia os containers
+## re-build: Rebuild and restart containers
 re-build: check-environment
-	@echo "${YELLOW}${INFO} Parando e removendo os serviços atuais...${NC}"
+	@echo "${YELLOW}${INFO} Stopping and removing current services...${NC}"
 	@$(DC) down
-	@echo "${GREEN}${INFO} Reconstruindo os serviços...${NC}"
+	@echo "${GREEN}${INFO} Rebuilding services...${NC}"
 	@$(DC) build
-	@echo "${GREEN}${INFO} Reiniciando os serviços...${NC}"
+	@echo "${GREEN}${INFO} Restarting services...${NC}"
 	@$(DC) up -d
-	@echo "${GREEN}${CHECK_MARK} Serviços reconstruídos e reiniciados com sucesso!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Services rebuilt and restarted successfully!${NC}"
 	@$(DC) logs
 
-## shell: Acessa o bash do container PHP
+## shell: Access the shell of the PHP container
 shell: check-environment check-container-running
-	@echo "${GREEN}${INFO} Acessando o shell do container PHP...${NC}"
+	@echo "${GREEN}${INFO} Accessing the shell of the PHP container...${NC}"
 	@$(DC) exec php sh
 
-## composer-install: Instala dependências do Composer. Uso make composer-install [PKG="[vendor/package [version]]"] [DEV="--dev"]
+## composer-install: Install Composer dependencies. Use make composer-install [PKG="[vendor/package [version]]"] [DEV="--dev"]
 composer-install: check-environment check-container-running
-	@echo "${GREEN}${INFO} Instalando dependências do Composer...${NC}"
+	@echo "${GREEN}${INFO} Installing Composer dependencies...${NC}"
 	@if [ -z "$(PKG)" ]; then \
 		$(EXEC_PHP) composer install; \
 	else \
 		$(EXEC_PHP) composer require $(PKG) $(DEV); \
 	fi
-	@echo "${GREEN}${CHECK_MARK} Operação do Composer concluída!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Composer operation completed!${NC}"
 
-## composer-remove: Remove dependências do Composer. Uso: make composer-remove PKG="vendor/package"
+## composer-remove: Remove Composer dependencies. Usage: make composer-remove PKG="vendor/package"
 composer-remove: check-environment check-container-running
 	@if [ -z "$(PKG)" ]; then \
-		echo "${RED}${WARNING}  Você deve especificar um pacote para remover. Uso: make composer-remove PKG=\"vendor/package\"${NC}"; \
+		echo "${RED}${WARNING}  You must specify a package to remove. Usage: make composer-remove PKG=\"vendor/package\"${NC}"; \
 	else \
 		$(EXEC_PHP) composer remove $(PKG); \
-		echo "${GREEN}${CHECK_MARK} Pacote $(PKG) removido com sucesso!${NC}"; \
+		echo "${GREEN}${CHECK_MARK} Package $(PKG) removed successfully!${NC}"; \
 	fi
 
-## composer-update: Atualiza dependências do Composer
+## composer-update: Update Composer dependencies
 composer-update: check-environment check-container-running
-	@echo "${GREEN}${INFO} Atualizando dependências do Composer...${NC}"
+	@echo "${GREEN}${INFO} Updating Composer dependencies...${NC}"
 	$(EXEC_PHP) composer update
-	@echo "${GREEN}${CHECK_MARK} Dependências atualizadas!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Dependencies updated!${NC}"
 
-## test: Executa testes
+## test: Run tests
 test: check-environment check-container-running
-	@echo "${GREEN}${INFO} Executando testes...${NC}"
-	$(EXEC_PHP) ./vendor/bin/phpunit --testdox --colors=always tests 
+	@echo "${GREEN}${INFO} Running tests...${NC}"
+	$(EXEC_PHP) ./vendor/bin/phpunit --testdox --colors=always tests
+	@echo "${GREEN}${CHECK_MARK} Tests completed!${NC}"
 
-	@echo "${GREEN}${CHECK_MARK} Testes concluídos!${NC}"
-
-## test-file: Executa testes em uma classe específica test-file FILE=[file]
+## test-file: Run tests on a specific class. Usage: make test-file FILE=[file]
 test-file: check-environment check-container-running
-	@echo "${GREEN}${INFO} Executando teste da classe $(FILE)...${NC}"
+	@echo "${GREEN}${INFO} Running test for class $(FILE)...${NC}"
 	$(EXEC_PHP) ./vendor/bin/phpunit --testdox --colors=always tests/$(FILE)
-	@echo "${GREEN}${CHECK_MARK} Teste da classe $(FILE) concluído!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Test for class $(FILE) completed!${NC}"
 
-## coverage: Executar a cobertura de testes com formatação visual
+## coverage: Run test coverage with visual formatting
 coverage: check-environment check-container-running
-	@echo "${GREEN}${INFO} Analisando Cobertura de Teste...${NC}"
+	@echo "${GREEN}${INFO} Analyzing test coverage...${NC}"
 	XDEBUG_MODE=coverage $(EXEC_PHP) ./vendor/bin/phpunit --coverage-text --colors=always tests | ccze -A
 
-## coverage-html: Executar a cobertura de testes e gerar relatório HTML
+## coverage-html: Run test coverage and generate HTML report
 coverage-html: check-environment check-container-running
-	@echo "${GREEN}${INFO} Analisando Cobertura de Teste e gerando relatório HTML...${NC}"
+	@echo "${GREEN}${INFO} Analyzing test coverage and generating HTML report...${NC}"
 	XDEBUG_MODE=coverage $(EXEC_PHP) ./vendor/bin/phpunit --coverage-html ./coverage-report-html tests
-	@echo "${GREEN}${INFO} Relatório de Cobertura de Teste gerado em ./coverage-report-html${NC}"
+	@echo "${GREEN}${INFO} Test coverage report generated in ./coverage-report-html${NC}"
 
-
-## run-script: Executa um script PHP. Uso: make run-script SCRIPT="caminho/do/script.php"
+## run-script: Run a PHP script. Usage: make run-script SCRIPT="path/to/script.php"
 run-script: check-environment check-container-running
-	@echo "${GREEN}${INFO} Executando script: $(SCRIPT)...${NC}"
+	@echo "${GREEN}${INFO} Running script: $(SCRIPT)...${NC}"
 	$(EXEC_PHP) php $(SCRIPT)
-	@echo "${GREEN}${CHECK_MARK} Script executado!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Script executed!${NC}"
 
-## cs-check: Executa o PHP_CodeSniffer para verificar o estilo do código
+## cs-check: Run PHP_CodeSniffer to check code style
 cs-check: check-environment check-container-running
-	@echo "${GREEN}${INFO} Verificando o estilo do código com PHP_CodeSniffer no diretório src/ e tests/...${NC}"
+	@echo "${GREEN}${INFO} Checking code style with PHP_CodeSniffer in src/ and tests/...${NC}"
 	$(EXEC_PHP) ./vendor/bin/phpcs src/ tests/
-	@echo "${GREEN}${CHECK_MARK} Verificação de estilo do código concluída!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Code style check completed!${NC}"
 
-
-## cs-fix: Executa o PHP CS Fixer para corrigir o estilo do código
+## cs-fix: Run PHP CS Fixer to fix code style
 cs-fix: check-environment check-container-running
-	@echo "${GREEN}${INFO} Corrigindo o estilo do código com PHP CS Fixer...${NC}"
+	@echo "${GREEN}${INFO} Fixing code style with PHP CS Fixer...${NC}"
 	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix
 	$(EXEC_PHP) ./vendor/bin/phpcbf src/ tests/
-	@echo "${GREEN}${CHECK_MARK} Estilo do código corrigido!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Code style fixed!${NC}"
 
-## stan: Executa o PHPStan para análise estática do código
-stan: check-environment check-container-running
-	@echo "${GREEN}${INFO} Executando análise estática do código com PHPStan...${NC}"
-	$(EXEC_PHP) ./vendor/bin/phpstan analyse
-	@echo "${GREEN}${CHECK_MARK} Análise estática do código concluída!${NC}"
-
-## security-check: Verifica vulnerabilidades de segurança nas dependências
+## security-check: Check for security vulnerabilities in dependencies
 security-check: check-environment check-container-running
-	@echo "${GREEN}${INFO} Verificando vulnerabilidades de segurança com o Security Checker...${NC}"
+	@echo "${GREEN}${INFO} Checking for security vulnerabilities with Security Checker...${NC}"
 	$(EXEC_PHP) ./vendor/bin/security-checker security:check
-	@echo "${GREEN}${CHECK_MARK} Verificação de segurança concluída!${NC}"
+	@echo "${GREEN}${CHECK_MARK} Security check completed!${NC}"
 
-## quality: Executa todos os comandos de qualidade
-quality: check-environment check-container-running cs-check stan test security-check 
-	@echo "${GREEN}${CHECK_MARK} Todos os comandos de qualidade foram executados!${NC}"
+## quality: Run all quality commands
+quality: check-environment check-container-running cs-check test security-check 
+	@echo "${GREEN}${CHECK_MARK} All quality commands executed!${NC}"
 
-## help: Mostra os passos iniciais e comandos disponíveis
+## help: Show initial setup steps and available commands
 help:
-	@echo "${GREEN}Passos iniciais para configurar o projeto:${NC}"
-	@echo "1. ${YELLOW}Setup inicial do ambiente:${NC}"
-	@echo "   ${GREEN}${CHECK_MARK} Copie o arquivo de ambiente:${NC} make setup-env"
-	@echo "   ${GREEN}${CHECK_MARK} Suba os containers Docker:${NC} make up"
-	@echo "   ${GREEN}${CHECK_MARK} Instale as dependências do Composer:${NC} make composer-install"
-	@echo "2. ${YELLOW}Desenvolvimento:${NC}"
-	@echo "   ${GREEN}${CHECK_MARK} Acesse o shell do container PHP:${NC} make shell"
-	@echo "   ${GREEN}${CHECK_MARK} Execute um script PHP:${NC} make run-script SCRIPT=\"nome_do_script.php\""
-	@echo "   ${GREEN}${CHECK_MARK} Execute os testes:${NC} make test"
-	@echo "3. ${YELLOW}Manutenção:${NC}"
-	@echo "   ${GREEN}${CHECK_MARK} Atualize as dependências do Composer:${NC} make composer-update"
-	@echo "   ${GREEN}${CHECK_MARK} Limpe o cache da aplicação:${NC} make cache-clear"
-	@echo "   ${RED}${WARNING}  Para e remove todos os containers Docker:${NC} make down"
-	@echo "\n${GREEN}Comandos disponíveis:${NC}"
+	@echo "${GREEN}Initial setup steps for configuring the project:${NC}"
+	@echo "1. ${YELLOW}Initial environment setup:${NC}"
+	@echo "   ${GREEN}${CHECK_MARK} Copy the environment file:${NC} make setup-env"
+	@echo "   ${GREEN}${CHECK_MARK} Start the Docker containers:${NC} make up"
+	@echo "   ${GREEN}${CHECK_MARK} Install Composer dependencies:${NC} make composer-install"
+	@echo "2. ${YELLOW}Development:${NC}"
+	@echo "   ${GREEN}${CHECK_MARK} Access the PHP container shell:${NC} make shell"
+	@echo "   ${GREEN}${CHECK_MARK} Run a PHP script:${NC} make run-script SCRIPT=\"script_name.php\""
+	@echo "   ${GREEN}${CHECK_MARK} Run the tests:${NC} make test"
+	@echo "3. ${YELLOW}Maintenance:${NC}"
+	@echo "   ${GREEN}${CHECK_MARK} Update Composer dependencies:${NC} make composer-update"
+	@echo "   ${GREEN}${CHECK_MARK} Clear the application cache:${NC} make cache-clear"
+	@echo "   ${RED}${WARNING}  Stop and remove all Docker containers:${NC} make down"
+	@echo "\n${GREEN}Available commands:${NC}"
 	@sed -n 's/^##//p' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ": "}; {printf "${YELLOW}%-30s${NC} %s\n", $$1, $$2}'
 
-.PHONY: setup-env up down build logs re-build shell composer-install composer-update test test-file coverage coverage-html run-script cs-fix cs-check stan security-check quality help
-
-
+.PHONY: setup-env up down build logs re-build shell composer-install composer-remove composer-update test test-file coverage coverage-html run-script cs-check cs-fix security-check quality help

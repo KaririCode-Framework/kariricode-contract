@@ -1,19 +1,22 @@
-<?xml version="1.0"?>
-<ruleset name="CustomRuleset">
-    <description>Um conjunto de regras personalizadas para PHP_CodeSniffer.</description>
-    <!-- Exclui a regra de comentários de documentação ausentes -->
-    <rule ref="Generic.Commenting.DocComment">
-        <exclude name="Generic.Commenting.DocComment.Missing"/>
-        <exclude name="Generic.Commenting.DocComment.Empty"/>
-        <exclude name="Generic.Commenting.DocComment.GroupedTags"/>
-        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
-        <exclude name="Generic.Commenting.DocComment.ContentAfterOpen"/>
-        <exclude name="Generic.Commenting.DocComment.ContentBeforeClose"/>
-    </rule>
-    <!-- Para desativar o requisito de que as tags de abertura/fechamento de comentários devem ser o único conteúdo na linha -->
-    <rule ref="Squiz.Commenting.BlockComment">
-        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
-        <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
-        <exclude name="Squiz.Commenting.BlockComment.EmptyLineAfter"/>
-    </rule>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="."/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <rule ref="PSR12"/>
+
+    <file>src/</file>
+    <file>tests/</file>
+
+    <!-- Ignorar diretórios e arquivos específicos -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>config/*</exclude-pattern>
+    <exclude-pattern>tests/bootstrap.php</exclude-pattern>
+    <exclude-pattern>tests/object-manager.php</exclude-pattern>
+
 </ruleset>
