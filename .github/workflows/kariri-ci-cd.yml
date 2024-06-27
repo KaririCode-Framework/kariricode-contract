@@ -29,7 +29,7 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: mbstring, xml
-          tools: composer:v2, php-cs-fixer, phpstan, phpunit, phpcs
+          tools: composer:v2, php-cs-fixer, phpunit
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
@@ -52,6 +52,18 @@ jobs:
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Set up PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, xml
+          tools: composer:v2, php-cs-fixer, phpunit
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
       - name: Run PHPUnit Tests
         run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text
