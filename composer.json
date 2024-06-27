@@ -45,14 +45,22 @@
       "/.docker",
       "/.github",
       "/.vscode",
-      "/.docs",
       "/tests",
+      "/vendor",
+      "/.env",
+      "/.env.example",
+      "/.gitignore",
+      "/.php-cs-fixer.php",
+      "/.phpcs-cache",
       "/docker-compose.yml",
-      "/phpunit.xml",
       "/phpcs.xml",
+      "/phpinsights.php",
       "/phpstan.neon",
-      "/.php-cs-fixer.dist.php",
-      "/Makefile"
+      "/phpunit.xml",
+      "/psalm.xml",
+      "/Makefile",
+      "/README.md",
+      "/README.pt-br.md"
     ]
   },
   "require-dev": {
@@ -67,5 +75,6 @@
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
-  }
+  },
+  "minimum-stability": "stable"
 }
