@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use PHPUnit\Framework\TestCase;
 use KaririCode\Contract\DataStructure\Tree;
+use PHPUnit\Framework\TestCase;
 
 final class TreeTest extends TestCase
 {
@@ -15,8 +15,8 @@ final class TreeTest extends TestCase
         $value = 'testValue';
 
         $tree->expects($this->once())
-             ->method('insert')
-             ->with($value);
+            ->method('insert')
+            ->with($value);
 
         $tree->insert($value);
     }
@@ -30,9 +30,9 @@ final class TreeTest extends TestCase
         };
 
         $tree->expects($this->once())
-             ->method('search')
-             ->with($value)
-             ->willReturn($node);
+            ->method('search')
+            ->with($value)
+            ->willReturn($node);
 
         $this->assertSame($node, $tree->search($value));
     }
@@ -43,9 +43,9 @@ final class TreeTest extends TestCase
         $value = 'testValue';
 
         $tree->expects($this->once())
-             ->method('delete')
-             ->with($value)
-             ->willReturn(true);
+            ->method('delete')
+            ->with($value)
+            ->willReturn(true);
 
         $this->assertTrue($tree->delete($value));
     }
@@ -55,8 +55,8 @@ final class TreeTest extends TestCase
         $tree = $this->createMock(Tree::class);
 
         $tree->expects($this->once())
-             ->method('inOrderTraversal')
-             ->willReturn($this->getGenerator());
+            ->method('inOrderTraversal')
+            ->willReturn($this->getGenerator());
 
         $result = [];
         foreach ($tree->inOrderTraversal() as $value) {

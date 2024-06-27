@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use PHPUnit\Framework\TestCase;
 use KaririCode\Contract\DataStructure\Map;
+use PHPUnit\Framework\TestCase;
 
 final class MapTest extends TestCase
 {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use PHPUnit\Framework\TestCase;
 use KaririCode\Contract\DataStructure\Heap;
+use PHPUnit\Framework\TestCase;
 
 final class HeapTest extends TestCase
 {
@@ -15,8 +15,8 @@ final class HeapTest extends TestCase
         $value = 'testValue';
 
         $heap->expects($this->once())
-             ->method('insert')
-             ->with($value);
+            ->method('insert')
+            ->with($value);
 
         $heap->insert($value);
     }
@@ -27,8 +27,8 @@ final class HeapTest extends TestCase
         $expectedValue = 'testValue';
 
         $heap->expects($this->once())
-             ->method('extract')
-             ->willReturn($expectedValue);
+            ->method('extract')
+            ->willReturn($expectedValue);
 
         $this->assertEquals($expectedValue, $heap->extract());
     }
@@ -39,8 +39,8 @@ final class HeapTest extends TestCase
         $expectedValue = 'testValue';
 
         $heap->expects($this->once())
-             ->method('peek')
-             ->willReturn($expectedValue);
+            ->method('peek')
+            ->willReturn($expectedValue);
 
         $this->assertEquals($expectedValue, $heap->peek());
     }
@@ -50,8 +50,8 @@ final class HeapTest extends TestCase
         $heap = $this->createMock(Heap::class);
 
         $heap->expects($this->once())
-             ->method('isEmpty')
-             ->willReturn(true);
+            ->method('isEmpty')
+            ->willReturn(true);
 
         $this->assertTrue($heap->isEmpty());
     }

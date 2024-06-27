@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use PHPUnit\Framework\TestCase;
 use KaririCode\Contract\DataStructure\CollectionList;
+use PHPUnit\Framework\TestCase;
 
 final class CollectionListTest extends TestCase
 {
@@ -15,8 +15,8 @@ final class CollectionListTest extends TestCase
         $item = 'testItem';
 
         $collection->expects($this->once())
-                   ->method('add')
-                   ->with($item);
+            ->method('add')
+            ->with($item);
 
         $collection->add($item);
     }
@@ -27,9 +27,9 @@ final class CollectionListTest extends TestCase
         $item = 'testItem';
 
         $collection->expects($this->once())
-                   ->method('remove')
-                   ->with($item)
-                   ->willReturn(true);
+            ->method('remove')
+            ->with($item)
+            ->willReturn(true);
 
         $this->assertTrue($collection->remove($item));
     }
@@ -41,9 +41,9 @@ final class CollectionListTest extends TestCase
         $expectedItem = 'testItem';
 
         $collection->expects($this->once())
-                   ->method('get')
-                   ->with($index)
-                   ->willReturn($expectedItem);
+            ->method('get')
+            ->with($index)
+            ->willReturn($expectedItem);
 
         $this->assertEquals($expectedItem, $collection->get($index));
     }
@@ -53,7 +53,7 @@ final class CollectionListTest extends TestCase
         $collection = $this->createMock(CollectionList::class);
 
         $collection->expects($this->once())
-                   ->method('clear');
+            ->method('clear');
 
         $collection->clear();
     }

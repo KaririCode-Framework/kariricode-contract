@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use PHPUnit\Framework\TestCase;
 use KaririCode\Contract\DataStructure\Stack;
+use PHPUnit\Framework\TestCase;
 
 final class StackTest extends TestCase
 {
@@ -15,8 +15,8 @@ final class StackTest extends TestCase
         $item = 'testItem';
 
         $stack->expects($this->once())
-              ->method('push')
-              ->with($item);
+            ->method('push')
+            ->with($item);
 
         $stack->push($item);
     }
@@ -27,8 +27,8 @@ final class StackTest extends TestCase
         $expectedItem = 'testItem';
 
         $stack->expects($this->once())
-              ->method('pop')
-              ->willReturn($expectedItem);
+            ->method('pop')
+            ->willReturn($expectedItem);
 
         $this->assertEquals($expectedItem, $stack->pop());
     }
@@ -39,8 +39,8 @@ final class StackTest extends TestCase
         $expectedItem = 'testItem';
 
         $stack->expects($this->once())
-              ->method('peek')
-              ->willReturn($expectedItem);
+            ->method('peek')
+            ->willReturn($expectedItem);
 
         $this->assertEquals($expectedItem, $stack->peek());
     }
@@ -50,8 +50,8 @@ final class StackTest extends TestCase
         $stack = $this->createMock(Stack::class);
 
         $stack->expects($this->once())
-              ->method('isEmpty')
-              ->willReturn(true);
+            ->method('isEmpty')
+            ->willReturn(true);
 
         $this->assertTrue($stack->isEmpty());
     }
