@@ -1,6 +1,6 @@
 {
   "name": "kariricode/contract",
-  "description": "The interface code implementations in PHP for the given namespaces and descriptions, following PSR standards, using modern PHP",
+  "description": "Central repository for interface definitions in the KaririCode Framework. Implements interface code in PHP for specified namespaces, adhering to PSR standards and leveraging modern PHP features.",
   "keywords": [
     "contract",
     "interface",
