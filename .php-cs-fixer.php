@@ -1,29 +1,65 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude('vendor')
-    ->in(__DIR__);
+    ->in(__DIR__ . '/src')
+    ->in(__DIR__ . '/tests')
+    ->exclude('var')
+    ->exclude('config')
+    ->exclude('vendor');
 
-$config = new PhpCsFixer\Config();
-return $config->setRules([
-    '@PSR12' => true,
-    'full_opening_tag' => false,
-    'phpdoc_var_without_name' => false,
-    'phpdoc_to_comment' => false,
-    'no_unused_imports' => true,
-    'array_syntax' => [
-        'syntax' => 'short',
-    ],
-    'no_trailing_whitespace' => true, // Remove espaços no final das linhas
-    'no_whitespace_in_blank_line' => true, // Remove espaços em linhas em branco
-    'binary_operator_spaces' => [
-        'default' => 'single_space', // Garante um espaço em operadores binários
-    ],
-    'method_argument_space' => [
-        'on_multiline' => 'ensure_fully_multiline', // Formata espaços em argumentos de métodos em múltiplas linhas
-        'after_heredoc' => true,
-    ],
-    'trim_array_spaces' => true, // Remove espaços desnecessários em arrays
-    'single_blank_line_at_eof' => true, // Garante uma única linha em branco no final do arquivo
-    // Adicione outras regras conforme necessário
-])->setFinder($finder);
+return (new PhpCsFixer\Config())
+    ->setParallelConfig(new PhpCsFixer\Runner\Parallel\ParallelConfig(4, 20))
+    ->setRules([
+        '@PSR12' => true,
+        '@Symfony' => true,
+        'full_opening_tag' => false,
+        'phpdoc_var_without_name' => false,
+        'phpdoc_to_comment' => false,
+        'array_syntax' => ['syntax' => 'short'],
+        'concat_space' => ['spacing' => 'one'],
+        'binary_operator_spaces' => [
+            'default' => 'single_space',
+            'operators' => [
+                '=' => 'single_space',
+                '=>' => 'single_space',
+            ],
+        ],
+        'blank_line_before_statement' => [
+            'statements' => ['return']
+        ],
+        'cast_spaces' => ['space' => 'single'],
+        'class_attributes_separation' => [
+            'elements' => [
+                'const' => 'none',
+                'method' => 'one',
+                'property' => 'none'
+            ]
+        ],
+        'declare_equal_normalize' => ['space' => 'none'],
+        'function_typehint_space' => true,
+        'lowercase_cast' => true,
+        'no_unused_imports' => true,
+        'not_operator_with_successor_space' => true,
+        'ordered_imports' => true,
+        'phpdoc_align' => ['align' => 'left'],
+        'phpdoc_no_alias_tag' => ['replacements' => ['type' => 'var', 'link' => 'see']],
+        'phpdoc_order' => true,
+        'phpdoc_scalar' => true,
+        'single_quote' => true,
+        'standardize_not_equals' => true,
+        'trailing_comma_in_multiline' => ['elements' => ['arrays']],
+        'trim_array_spaces' => true,
+        'unary_operator_spaces' => true,
+        'visibility_required' => ['elements' => ['const', 'method', 'property']],
+        'multiline_whitespace_before_semicolons' => [
+            'strategy' => 'no_multi_line',
+        ],
+        'method_chaining_indentation' => true,
+        'class_definition' => [
+            'single_item_single_line' => false,
+            'multi_line_extends_each_single_line' => true,
+        ],
+    ])
+    ->setRiskyAllowed(true)
+    ->setFinder($finder)
+    ->setUsingCache(false);

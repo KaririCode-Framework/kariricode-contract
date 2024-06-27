@@ -1,94 +1,171 @@
-# Kariri/Contract - Kariri PHP Framework
+# KaririCode Contract
 
-Kariri é um framework PHP moderno e poderoso, projetado para oferecer uma base sólida para o desenvolvimento de aplicações web. Ele segue os padrões e melhores práticas da comunidade PHP, como as PSRs, e utiliza os recursos mais modernos do PHP.
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
+[![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt-br.md)
 
-Para o Kariri PHP Framework, definir contratos através de interfaces no componente **Kariri\Contract** é essencial para promover a modularização e interoperabilidade entre os componentes. Esses contratos servem para garantir que os componentes possam se comunicar de maneira padronizada, mantendo a independência e a facilidade de substituição ou extensão. Vamos considerar as interfaces típicas que um componente de contrato poderia incluir, adaptando os nomes para refletir o uso do sufixo "Contract" (particularmente consideramos “Contract” mais semântico do que “Interface”, pelo fato de ser separado em um componente independente).
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Makefile](https://img.shields.io/badge/Makefile-1D1D1D?style=for-the-badge&logo=gnu&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![PHPUnit](https://img.shields.io/badge/PHPUnit-78E130?style=for-the-badge&logo=phpunit&logoColor=white)
 
-## Kariri\Contract Interfaces
+## Overview
 
-O componente Kariri\Contract do Kariri PHP Framework define uma série de interfaces que estabelecem contratos para diferentes aspectos do desenvolvimento de aplicações web. Essas interfaces promovem uma arquitetura modular, flexível e interoperável. Aqui estão algumas das principais interfaces incluídas:
+The `kariricode/contract` package provides a set of standardized interfaces for common data structures and patterns within the KaririCode Framework. This library ensures consistency and interoperability across various components of the KaririCode ecosystem, following PSR standards and utilizing modern PHP practices.
 
-### Container
+## Features
 
-- **Kariri\Contract\Container\ContainerContract**: Define o contrato para o container de injeção de dependências, incluindo métodos para vincular interfaces a implementações concretas, resolver dependências e obter instâncias de classes.
+- **🗂️ PSR Standards**: Adheres to PHP-FIG PSR standards for interoperability.
+- **📚 Comprehensive Interfaces**: Includes interfaces for common data structures such as Collection, Heap, Map, Queue, Stack, and Tree.
+- **🚀 Modern PHP**: Utilizes PHP 8.3 features to ensure type safety and modern coding practices.
+- **🔍 High Quality**: Ensures code quality and security through rigorous testing and analysis tools.
 
-### Console
+## Installation
 
-- **Kariri\Contract\Console\CommandContract**: Define o contrato para comandos de linha de comando, incluindo métodos para executar o comando, definir argumentos e opções, e interagir com a entrada e saída do console.
+You can install the package via Composer:
 
-### Middleware
+```bash
+composer require kariricode/contract
+```
 
-- **Kariri\Contract\Middleware\MiddlewareContract**: Define o contrato para middleware, incluindo métodos para processar uma requisição HTTP antes ou depois de ser tratada pelo núcleo da aplicação.
-- **Kariri\Contract\Middleware\PipelineContract**: Define o contrato para pipelines de middleware, permitindo a execução de uma sequência de middlewares para processar uma requisição HTTP.
-- **Kariri\Contract\Middleware\KernelContract**: Define o contrato para o kernel HTTP, que é responsável por orquestrar o processamento de requisições HTTP, incluindo a execução de middlewares e o envio das respostas.
+## Usage
 
-### Provider
+Implement the provided interfaces in your classes to ensure consistent and reliable functionality across different components of the KaririCode Framework.
 
-- **Kariri\Contract\Provider\ProviderContract**: Define o contrato para providers, que são responsáveis por configurar e registrar serviços no container de injeção de dependências, bem como inicializar componentes e recursos do framework.
+Example of implementing the `CollectionList` interface:
 
-### Events
+```php
+<?php
 
-- **Kariri\Contract\Events\DispatcherContract**: Define o contrato para o despachante de eventos, incluindo métodos para registrar ouvintes de eventos, disparar eventos e propagar eventos através de diferentes camadas da aplicação.
-- **Kariri\Contract\Events\ListenerContract**: Define o contrato para ouvintes de eventos, incluindo métodos para lidar com eventos específicos disparados pelo despachante de eventos.
+declare(strict_types=1);
 
-### HTTP
+namespace YourNamespace;
 
-- **Kariri\Contract\Http\RequestContract**: Define o contrato para lidar com requisições HTTP, incluindo métodos para recuperar dados da requisição, como cabeçalhos, parâmetros de consulta e corpo da requisição.
-- **Kariri\Contract\Http\ResponseContract**: Define o contrato para lidar com respostas HTTP, incluindo métodos para definir cabeçalhos, códigos de status e corpo da resposta.
+use KaririCode\Contract\DataStructure\CollectionList;
 
-### Routing
+class MyCollection implements CollectionList
+{
+    private array $items = [];
 
-- **Kariri\Contract\Routing\RouterContract**: Define o contrato para o sistema de roteamento, incluindo métodos para definir rotas, combinar requisições com rotas definidas e recuperar parâmetros das rotas correspondentes.
+    public function add(mixed $item): void
+    {
+        $this->items[] = $item;
+    }
 
-### Database
+    public function remove(mixed $item): bool
+    {
+        $index = array_search($item, $this->items, true);
+        if ($index === false) {
+            return false;
+        }
+        unset($this->items[$index]);
+        return true;
+    }
 
-- **Kariri\Contract\Database\ConnectionContract**: Define o contrato para estabelecer e gerenciar conexões com bancos de dados, incluindo métodos para criar conexões, executar consultas e recuperar resultados.
+    public function get(int $index): mixed
+    {
+        return $this->items[$index] ?? null;
+    }
 
-### View
+    public function clear(): void
+    {
+        $this->items = [];
+    }
 
-- **Kariri\Contract\View\RendererContract**: Define o contrato para renderização de views, incluindo métodos para renderizar templates, passar dados para templates e recuperar o resultado renderizado.
+    public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->items);
+    }
 
-### Cache
+    public function count(): int
+    {
+        return count($this->items);
+    }
 
-- **Kariri\Contract\Cache\CacheContract**: Define o contrato para o sistema de cache, incluindo métodos para armazenar, recuperar e remover dados em cache.
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->items[$offset]);
+    }
 
-### Session
+    public function offsetGet(mixed $offset): mixed
+    {
+        return $this->items[$offset] ?? null;
+    }
 
-- **Kariri\Contract\Session\SessionContract**: Define o contrato para gerenciar sessões, incluindo métodos para iniciar, ler e gravar dados de sessão.
+    public function offsetSet(mixed $offset, mixed $value): void
+    {
+        if ($offset === null) {
+            $this->items[] = $value;
+        } else {
+            $this->items[$offset] = $value;
+        }
+    }
 
-### Validation
+    public function offsetUnset(mixed $offset): void
+    {
+        unset($this->items[$offset]);
+    }
+}
+```
 
-- **Kariri\Contract\Validation\ValidatorContract**: Define o contrato para validação de dados, incluindo métodos para definir regras de validação e executar a validação.
+## Development Environment
 
-### Authentication
+### Docker
 
-- **Kariri\Contract\Auth\AuthContract**: Define o contrato para autenticação e autorização, incluindo métodos para autenticar usuários, verificar permissões e gerenciar credenciais.
+To maintain consistency and ensure the environment's integrity, we provide a Docker setup:
 
-### Queue
+- **🐳 Docker Compose**: Used to manage multi-container Docker applications.
+- **📦 Dockerfile**: Defines the Docker image for the PHP environment.
 
-- **Kariri\Contract\Queue\QueueContract**: Define o contrato para o sistema de filas, incluindo métodos para enviar e processar tarefas assíncronas.
+To start the environment:
 
-### Logging
+```bash
+make up
+```
 
-- **Kariri\Contract\Log\LoggerContract**: Define o contrato para registro de logs, incluindo métodos para registrar mensagens de log com diferentes níveis de severidade.
+### Makefile
 
-### Filesystem
+We include a `Makefile` to streamline common development tasks:
 
-- **Kariri\Contract\Filesystem\FilesystemContract**: Define o contrato para interagir com o sistema de arquivos, incluindo métodos para ler, gravar e gerenciar arquivos e diretórios.
+- **Start services**: `make up`
+- **Stop services**: `make down`
+- **Run tests**: `make test`
+- **Install dependencies**: `make composer-install`
+- **Run code style checks**: `make cs-check`
+- **Fix code style issues**: `make cs-fix`
+- **Security checks**: `make security-check`
 
-### Requisitos
+For a complete list of commands, run:
 
-- PHP 8.3 ou superior
-- Extensões PHP necessárias (dependendo dos recursos utilizados)
+```bash
+make help
+```
 
-## Documentação
+## Testing
 
-Em desenvolvimento
+To run the tests, you can use the following command:
 
-## Contribuição
+```bash
+make test
+```
 
-Se você encontrou um problema ou tem uma sugestão de melhoria, sinta-se à vontade para abrir uma nova issue ou enviar um pull request no repositório do GitHub.
+## Contributing
 
-## Licença
+Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) for details on the process for submitting pull requests.
 
-O Kariri PHP Framework é licenciado sob a [MIT License](LICENSE).
+## Support
+
+For any issues, please visit our [issue tracker](https://github.com/Kariri-PHP-Framework/kariri-contract/issues).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## About KaririCode
+
+The KaririCode Framework is a modern, robust, and scalable PHP framework designed to streamline web development by providing a comprehensive set of tools and components. For more information, visit the [KaririCode website](https://kariricode.org/).
+
+Join the KaririCode Club for access to exclusive content, community support, and advanced tutorials on PHP and the KaririCode Framework. Learn more at [KaririCode Club](https://kariricode.org/club).
+
+---
+
+Maintained by Walmir Silva - [walmir.silva@kariricode.org](mailto:walmir.silva@kariricode.org)

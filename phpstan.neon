@@ -1,9 +1,7 @@
 parameters:
-    level: 8
-    checkMissingIterableValueType: false
-    treatPhpDocTypesAsCertain: false
-    checkGenericClassInNonGenericObjectType: false
+    level: max
     paths:
         - src
         - tests
-    
+    ignoreErrors:
+        - '#Method .* has parameter \$.* with no value type specified in iterable type array.#'    
