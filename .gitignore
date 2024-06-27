@@ -8,6 +8,7 @@
 /phpstan.neon.dist
 /phpstan.neon.cache
 /.phpstan.result.cache
+/.phpcs-cache
 
 # Dependências
 /vendor/

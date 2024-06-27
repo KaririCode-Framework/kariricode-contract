@@ -1,6 +1,6 @@
 {
   "name": "kariricode/contract",
-  "description": "The interface code implementations in PHP for the given namespaces and descriptions, following PSR standards, using modern PHP",
+  "description": "Central repository for interface definitions in the KaririCode Framework. Implements interface code in PHP for specified namespaces, adhering to PSR standards and leveraging modern PHP features.",
   "keywords": [
     "contract",
     "interface",
@@ -37,31 +37,8 @@
     }
   },
   "support": {
-    "issues": "https://github.com/Kariri-PHP-Framework/kariri-contract/issues",
-    "source": "https://github.com/Kariri-PHP-Framework/kariri-contract"
-  },
-  "archive": {
-    "exclude": [
-      "/.docker",
-      "/.github",
-      "/.vscode",
-      "/tests",
-      "/vendor",
-      "/.env",
-      "/.env.example",
-      "/.gitignore",
-      "/.php-cs-fixer.php",
-      "/.phpcs-cache",
-      "/docker-compose.yml",
-      "/phpcs.xml",
-      "/phpinsights.php",
-      "/phpstan.neon",
-      "/phpunit.xml",
-      "/psalm.xml",
-      "/Makefile",
-      "/README.md",
-      "/README.pt-br.md"
-    ]
+    "issues": "https://github.com/KaririCode-Framework/kariricode-contract/issues",
+    "source": "https://github.com/KaririCode-Framework/kariricode-contract"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.58",
