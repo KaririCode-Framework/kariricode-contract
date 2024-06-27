@@ -25,7 +25,7 @@ final class TreeTest extends TestCase
     {
         $tree = $this->createMock(Tree::class);
         $value = 'testValue';
-        $node = new class () {
+        $node = new class() {
             public mixed $value = 'testValue';
         };
 

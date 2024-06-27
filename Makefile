@@ -133,15 +133,14 @@ run-script: check-environment check-container-running
 
 ## cs-check: Run PHP_CodeSniffer to check code style
 cs-check: check-environment check-container-running
-	@echo "${GREEN}${INFO} Checking code style with PHP_CodeSniffer in src/ and tests/...${NC}"
-	$(EXEC_PHP) ./vendor/bin/phpcs src/ tests/
+	@echo "${GREEN}${INFO} Checking code style...${NC}"
+	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix --dry-run --diff
 	@echo "${GREEN}${CHECK_MARK} Code style check completed!${NC}"
 
 ## cs-fix: Run PHP CS Fixer to fix code style
 cs-fix: check-environment check-container-running
 	@echo "${GREEN}${INFO} Fixing code style with PHP CS Fixer...${NC}"
 	$(EXEC_PHP) ./vendor/bin/php-cs-fixer fix
-	$(EXEC_PHP) ./vendor/bin/phpcbf src/ tests/
 	@echo "${GREEN}${CHECK_MARK} Code style fixed!${NC}"
 
 ## security-check: Check for security vulnerabilities in dependencies
