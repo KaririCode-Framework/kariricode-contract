@@ -37,8 +37,8 @@
     }
   },
   "support": {
-    "issues": "https://github.com/Kariri-PHP-Framework/kariri-contract/issues",
-    "source": "https://github.com/Kariri-PHP-Framework/kariri-contract"
+    "issues": "https://github.com/KaririCode-Framework/kariricode-contract/issues",
+    "source": "https://github.com/KaririCode-Framework/kariricode-contract"
   },
   "archive": {
     "exclude": [
