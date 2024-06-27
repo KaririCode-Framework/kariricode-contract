@@ -1,31 +1,31 @@
 {
-  "name": "kariri/contract",
+  "name": "kariricode/contract",
   "description": "The interface code implementations in PHP for the given namespaces and descriptions, following PSR standards, using modern PHP",
   "keywords": [
     "contract",
     "interface",
     "PSRs",
     "php",
-    "framework",
-    "kariri"
+    "kariri",
+    "framework"
   ],
-  "homepage": "https://kariri-php-framework.growthcode.com.br",
+  "homepage": "https://kariricode.org/",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
       "name": "Walmir Silva",
-      "email": "walmir.silva@growthcode.com.br"
+      "email": "walmir.silva@kariricode.org"
     }
   ],
   "autoload": {
     "psr-4": {
-      "Kariri\\Contract\\": "src/"
+      "KaririCode\\Contract\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Kariri\\Contract\\Tests\\": "tests/"
+      "KaririCode\\Contract\\Tests\\": "tests"
     }
   },
   "require": {
@@ -38,8 +38,28 @@
     "squizlabs/php_codesniffer": "^3.9",
     "enlightn/security-checker": "^2.0"
   },
+  "extra": {
+    "branch-alias": {
+      "dev-main": "1.0.x-dev"
+    }
+  },
   "support": {
     "issues": "https://github.com/Kariri-PHP-Framework/kariri-contract/issues",
     "source": "https://github.com/Kariri-PHP-Framework/kariri-contract"
+  },
+  "archive": {
+    "exclude": [
+      "/.docker",
+      "/.github",
+      "/.vscode",
+      "/.docs",
+      "/tests",
+      "/docker-compose.yml",
+      "/phpunit.xml",
+      "/phpcs.xml",
+      "/phpstan.neon",
+      "/.php-cs-fixer.php",
+      "/Makefile"
+    ]
   }
 }
