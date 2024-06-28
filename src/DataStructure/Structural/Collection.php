@@ -20,7 +20,7 @@ use KaririCode\Contract\DataStructure\Behavioral\IterableCollection;
  *
  * @see       https://kariricode.org/
  */
-interface Collection extends Countable, Indexable, IterableCollection
+interface Collection extends Countable, Indexable
 {
     /**
      * Adds an element to the collection.
