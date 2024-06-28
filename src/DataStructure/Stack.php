@@ -9,11 +9,11 @@ namespace KaririCode\Contract\DataStructure;
  *
  * Defines the contract for stack data structures, which follow the LIFO (Last-In-First-Out) principle.
  *
- *
- * @package   KaririCode\Contract\DataStructure
  * @category  Interfaces
+ *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
+ *
  * @see       https://kariricode.org/
  */
 interface Stack
@@ -21,22 +21,21 @@ interface Stack
     /**
      * Pushes an element onto the stack.
      *
-     * @param mixed $element The element to push.
-     * @return void
+     * @param mixed $element the element to push
      */
     public function push(mixed $element): void;
 
     /**
      * Pops an element from the stack.
      *
-     * @return mixed The popped element.
+     * @return mixed the popped element
      */
     public function pop(): mixed;
 
     /**
      * Peeks at the top element of the stack without removing it.
      *
-     * @return mixed The top element.
+     * @return mixed the top element
      */
     public function peek(): mixed;
 }

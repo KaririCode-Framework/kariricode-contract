@@ -9,67 +9,43 @@ use PHPUnit\Framework\TestCase;
 
 final class TreeTest extends TestCase
 {
+    public function testAdd(): void
+    {
+        $mock = $this->createMock(Tree::class);
+        $mock->expects($this->once())->method('add')->with('value');
+
+        $mock->add('value');
+    }
+
     public function testInsert(): void
     {
-        $tree = $this->createMock(Tree::class);
-        $value = 'testValue';
+        $mock = $this->createMock(Tree::class);
+        $mock->expects($this->once())->method('insert')->with(0, 'value');
 
-        $tree->expects($this->once())
-            ->method('insert')
-            ->with($value);
-
-        $tree->insert($value);
+        $mock->insert(0, 'value');
     }
 
-    public function testSearch(): void
+    public function testRemove(): void
     {
-        $tree = $this->createMock(Tree::class);
-        $value = 'testValue';
-        $node = new class() {
-            public mixed $value = 'testValue';
-        };
+        $mock = $this->createMock(Tree::class);
+        $mock->method('remove')->with('value')->willReturn(true);
 
-        $tree->expects($this->once())
-            ->method('search')
-            ->with($value)
-            ->willReturn($node);
-
-        $this->assertSame($node, $tree->search($value));
+        $this->assertTrue($mock->remove('value'));
     }
 
-    public function testDelete(): void
+    public function testFind(): void
     {
-        $tree = $this->createMock(Tree::class);
-        $value = 'testValue';
+        $mock = $this->createMock(Tree::class);
+        $mock->method('find')->with('value')->willReturn('value');
 
-        $tree->expects($this->once())
-            ->method('delete')
-            ->with($value)
-            ->willReturn(true);
-
-        $this->assertTrue($tree->delete($value));
+        $this->assertSame('value', $mock->find('value'));
     }
 
-    public function testInOrderTraversal(): void
+    public function testContains(): void
     {
-        $tree = $this->createMock(Tree::class);
+        $mock = $this->createMock(Tree::class);
+        $mock->method('contains')->with('value')->willReturn(true);
 
-        $tree->expects($this->once())
-            ->method('inOrderTraversal')
-            ->willReturn($this->getGenerator());
-
-        $result = [];
-        foreach ($tree->inOrderTraversal() as $value) {
-            $result[] = $value;
-        }
-
-        $this->assertEquals(['a', 'b', 'c'], $result);
-    }
-
-    private function getGenerator(): \Generator
-    {
-        yield 'a';
-        yield 'b';
-        yield 'c';
+        $this->assertTrue($mock->contains('value'));
     }
 }

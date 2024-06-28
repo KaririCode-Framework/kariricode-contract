@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\DataStructure;
-
-use KaririCode\Contract\Behavioral\Iterator;
+namespace KaririCode\Contract\DataStructure\Behavioral;
 
 /**
  * Interface IterableCollection.

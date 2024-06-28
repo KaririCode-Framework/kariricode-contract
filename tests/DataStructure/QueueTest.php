@@ -11,48 +11,25 @@ final class QueueTest extends TestCase
 {
     public function testEnqueue(): void
     {
-        $queue = $this->createMock(Queue::class);
-        $item = 'testItem';
+        $mock = $this->createMock(Queue::class);
+        $mock->expects($this->once())->method('enqueue')->with('element');
 
-        $queue->expects($this->once())
-            ->method('enqueue')
-            ->with($item);
-
-        $queue->enqueue($item);
+        $mock->enqueue('element');
     }
 
     public function testDequeue(): void
     {
-        $queue = $this->createMock(Queue::class);
-        $expectedItem = 'testItem';
+        $mock = $this->createMock(Queue::class);
+        $mock->method('dequeue')->willReturn('element');
 
-        $queue->expects($this->once())
-            ->method('dequeue')
-            ->willReturn($expectedItem);
-
-        $this->assertEquals($expectedItem, $queue->dequeue());
+        $this->assertSame('element', $mock->dequeue());
     }
 
-    public function testFront(): void
+    public function testPeek(): void
     {
-        $queue = $this->createMock(Queue::class);
-        $expectedItem = 'testItem';
+        $mock = $this->createMock(Queue::class);
+        $mock->method('peek')->willReturn('element');
 
-        $queue->expects($this->once())
-            ->method('front')
-            ->willReturn($expectedItem);
-
-        $this->assertEquals($expectedItem, $queue->front());
-    }
-
-    public function testIsEmpty(): void
-    {
-        $queue = $this->createMock(Queue::class);
-
-        $queue->expects($this->once())
-            ->method('isEmpty')
-            ->willReturn(true);
-
-        $this->assertTrue($queue->isEmpty());
+        $this->assertSame('element', $mock->peek());
     }
 }

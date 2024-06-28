@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\Behavioral;
+namespace KaririCode\Contract\DataStructure\Behavioral;
 
 /**
  * Interface Countable.
  *
  * Defines the contract for counting elements.
  *
- * @package   KaririCode\Contract\Behavioral
  * @category  Interfaces
+ *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
+ *
  * @see       https://kariricode.org/
  */
 interface Countable

@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\Structural;
+namespace KaririCode\Contract\DataStructure\Structural;
 
 /**
  * Interface Serializable.
  *
  * Defines the contract for serializing and deserializing data.
  *
- * @package   KaririCode\Contract\Structural
  * @category  Interfaces
+ *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
+ *
  * @see       https://kariricode.org/
  */
 interface Serializable

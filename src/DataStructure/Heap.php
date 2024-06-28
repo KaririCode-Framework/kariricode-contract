@@ -10,11 +10,11 @@ namespace KaririCode\Contract\DataStructure;
  * Defines the contract for heap data structures.
  * A heap is a specialized tree-based data structure that satisfies the heap property.
  *
- *
- * @package   KaririCode\Contract\DataStructure
  * @category  Interfaces
+ *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
+ *
  * @see       https://kariricode.org/
  */
 interface Heap
@@ -22,39 +22,38 @@ interface Heap
     /**
      * Adds an element to the heap.
      *
-     * @param mixed $element The element to add.
-     * @return void
+     * @param mixed $element the element to add
      */
     public function add(mixed $element): void;
 
     /**
      * Inserts an element into the heap at the specified position.
      *
-     * @param int $index The index at which to insert the element.
-     * @param mixed $element The element to insert.
-     * @return void
+     * @param int $index the index at which to insert the element
+     * @param mixed $element the element to insert
      */
     public function insert(int $index, mixed $element): void;
 
     /**
      * Removes and returns the root element from the heap.
      *
-     * @return mixed The removed root element.
+     * @return mixed the removed root element
      */
     public function poll(): mixed;
 
     /**
      * Removes a specific element from the heap.
      *
-     * @param mixed $element The element to remove.
-     * @return bool True if the element was removed, false otherwise.
+     * @param mixed $element the element to remove
+     *
+     * @return bool true if the element was removed, false otherwise
      */
     public function remove(mixed $element): bool;
 
     /**
      * Returns the root element without removing it.
      *
-     * @return mixed The root element.
+     * @return mixed the root element
      */
     public function peek(): mixed;
 }
