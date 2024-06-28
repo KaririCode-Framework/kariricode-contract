@@ -7,44 +7,56 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Tree.
  *
- * Defines the contract for a tree data structure.
+ * Defines the contract for tree data structures.
+ *
+ * @category  Interfaces
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
 interface Tree
 {
     /**
-     * Inserts a value into the tree.
+     * Adds a value to the tree.
      *
+     * @param mixed $value the value to add
+     */
+    public function add(mixed $value): void;
+
+    /**
+     * Inserts a value into the tree at the specified position.
+     *
+     * @param int $index the index at which to insert the value
      * @param mixed $value the value to insert
      */
-    public function insert(mixed $value): void;
+    public function insert(int $index, mixed $value): void;
 
     /**
-     * Searches for a value in the tree.
+     * Removes a value from the tree.
      *
-     * @param mixed $value the value to search for
+     * @param mixed $value the value to remove
      *
-     * @return object|null the node containing the value, or null if not found
+     * @return bool true if the value was removed, false otherwise
      */
-    public function search(mixed $value): ?object;
+    public function remove(mixed $value): bool;
 
     /**
-     * Deletes a value from the tree.
+     * Finds a value in the tree.
      *
-     * @param mixed $value the value to delete
+     * @param mixed $value the value to find
      *
-     * @return bool true if the value was successfully deleted, false otherwise
+     * @return mixed|null the found value or null if not found
      */
-    public function delete(mixed $value): bool;
+    public function find(mixed $value): mixed;
 
     /**
-     * Performs an in-order traversal of the tree.
+     * Checks if the tree contains a specific value.
      *
-     * @return \Generator a generator for the in-order traversal
+     * @param mixed $value the value to check
+     *
+     * @return bool true if the value is found, false otherwise
      */
-    public function inOrderTraversal(): \Generator;
+    public function contains(mixed $value): bool;
 }

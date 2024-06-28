@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\DataStructure;
 
-use KaririCode\Contract\DataStructure\IterableCollection;
+use KaririCode\Contract\DataStructure\Behavioral\IterableCollection;
+use KaririCode\Contract\DataStructure\Behavioral\Iterator;
 use PHPUnit\Framework\TestCase;
 
 final class IterableCollectionTest extends TestCase
 {
     public function testGetIterator(): void
     {
-        $collection = $this->createMock(IterableCollection::class);
-        $iterator = $this->createMock(\Traversable::class);
+        $iteratorMock = $this->createMock(Iterator::class);
+        $mock = $this->createMock(IterableCollection::class);
+        $mock->method('getIterator')->willReturn($iteratorMock);
 
-        $collection->expects($this->once())
-            ->method('getIterator')
-            ->willReturn($iterator);
-
-        $this->assertSame($iterator, $collection->getIterator());
+        $this->assertSame($iteratorMock, $mock->getIterator());
     }
 }

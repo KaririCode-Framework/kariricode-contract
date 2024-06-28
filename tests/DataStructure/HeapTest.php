@@ -9,50 +9,43 @@ use PHPUnit\Framework\TestCase;
 
 final class HeapTest extends TestCase
 {
-    public function testInsert(): void
+    public function testAdd(): void
     {
-        $heap = $this->createMock(Heap::class);
-        $value = 'testValue';
+        $mock = $this->createMock(Heap::class);
+        $mock->expects($this->once())->method('add')->with('element');
 
-        $heap->expects($this->once())
-            ->method('insert')
-            ->with($value);
-
-        $heap->insert($value);
+        $mock->add('element');
     }
 
-    public function testExtract(): void
+    public function testInsert(): void
     {
-        $heap = $this->createMock(Heap::class);
-        $expectedValue = 'testValue';
+        $mock = $this->createMock(Heap::class);
+        $mock->expects($this->once())->method('insert')->with(0, 'element');
 
-        $heap->expects($this->once())
-            ->method('extract')
-            ->willReturn($expectedValue);
+        $mock->insert(0, 'element');
+    }
 
-        $this->assertEquals($expectedValue, $heap->extract());
+    public function testPoll(): void
+    {
+        $mock = $this->createMock(Heap::class);
+        $mock->method('poll')->willReturn('rootElement');
+
+        $this->assertSame('rootElement', $mock->poll());
+    }
+
+    public function testRemove(): void
+    {
+        $mock = $this->createMock(Heap::class);
+        $mock->method('remove')->with('element')->willReturn(true);
+
+        $this->assertTrue($mock->remove('element'));
     }
 
     public function testPeek(): void
     {
-        $heap = $this->createMock(Heap::class);
-        $expectedValue = 'testValue';
+        $mock = $this->createMock(Heap::class);
+        $mock->method('peek')->willReturn('rootElement');
 
-        $heap->expects($this->once())
-            ->method('peek')
-            ->willReturn($expectedValue);
-
-        $this->assertEquals($expectedValue, $heap->peek());
-    }
-
-    public function testIsEmpty(): void
-    {
-        $heap = $this->createMock(Heap::class);
-
-        $heap->expects($this->once())
-            ->method('isEmpty')
-            ->willReturn(true);
-
-        $this->assertTrue($heap->isEmpty());
+        $this->assertSame('rootElement', $mock->peek());
     }
 }

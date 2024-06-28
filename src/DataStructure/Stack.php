@@ -7,40 +7,35 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Stack.
  *
- * Defines the contract for a stack data structure.
+ * Defines the contract for stack data structures, which follow the LIFO (Last-In-First-Out) principle.
+ *
+ * @category  Interfaces
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
-interface Stack extends \Countable
+interface Stack
 {
     /**
-     * Adds an item to the top of the stack.
+     * Pushes an element onto the stack.
      *
-     * @param mixed $item the item to add
+     * @param mixed $element the element to push
      */
-    public function push(mixed $item): void;
+    public function push(mixed $element): void;
 
     /**
-     * Removes and returns the item at the top of the stack.
+     * Pops an element from the stack.
      *
-     * @return mixed the item at the top of the stack
+     * @return mixed the popped element
      */
     public function pop(): mixed;
 
     /**
-     * Gets the item at the top of the stack without removing it.
+     * Peeks at the top element of the stack without removing it.
      *
-     * @return mixed the item at the top of the stack
+     * @return mixed the top element
      */
     public function peek(): mixed;
-
-    /**
-     * Checks if the stack is empty.
-     *
-     * @return bool true if the stack is empty, false otherwise
-     */
-    public function isEmpty(): bool;
 }

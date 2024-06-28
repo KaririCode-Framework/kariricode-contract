@@ -7,40 +7,53 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Heap.
  *
- * Defines the contract for a heap data structure.
+ * Defines the contract for heap data structures.
+ * A heap is a specialized tree-based data structure that satisfies the heap property.
+ *
+ * @category  Interfaces
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
-interface Heap extends \Countable
+interface Heap
 {
     /**
-     * Inserts a value into the heap.
+     * Adds an element to the heap.
      *
-     * @param mixed $value the value to insert
+     * @param mixed $element the element to add
      */
-    public function insert(mixed $value): void;
+    public function add(mixed $element): void;
 
     /**
-     * Extracts the top value from the heap.
+     * Inserts an element into the heap at the specified position.
      *
-     * @return mixed the extracted value
+     * @param int $index the index at which to insert the element
+     * @param mixed $element the element to insert
      */
-    public function extract(): mixed;
+    public function insert(int $index, mixed $element): void;
 
     /**
-     * Peeks at the top value of the heap without extracting it.
+     * Removes and returns the root element from the heap.
      *
-     * @return mixed the top value
+     * @return mixed the removed root element
+     */
+    public function poll(): mixed;
+
+    /**
+     * Removes a specific element from the heap.
+     *
+     * @param mixed $element the element to remove
+     *
+     * @return bool true if the element was removed, false otherwise
+     */
+    public function remove(mixed $element): bool;
+
+    /**
+     * Returns the root element without removing it.
+     *
+     * @return mixed the root element
      */
     public function peek(): mixed;
-
-    /**
-     * Checks if the heap is empty.
-     *
-     * @return bool true if the heap is empty, false otherwise
-     */
-    public function isEmpty(): bool;
 }

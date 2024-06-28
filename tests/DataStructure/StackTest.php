@@ -11,48 +11,25 @@ final class StackTest extends TestCase
 {
     public function testPush(): void
     {
-        $stack = $this->createMock(Stack::class);
-        $item = 'testItem';
+        $mock = $this->createMock(Stack::class);
+        $mock->expects($this->once())->method('push')->with('element');
 
-        $stack->expects($this->once())
-            ->method('push')
-            ->with($item);
-
-        $stack->push($item);
+        $mock->push('element');
     }
 
     public function testPop(): void
     {
-        $stack = $this->createMock(Stack::class);
-        $expectedItem = 'testItem';
+        $mock = $this->createMock(Stack::class);
+        $mock->method('pop')->willReturn('element');
 
-        $stack->expects($this->once())
-            ->method('pop')
-            ->willReturn($expectedItem);
-
-        $this->assertEquals($expectedItem, $stack->pop());
+        $this->assertSame('element', $mock->pop());
     }
 
     public function testPeek(): void
     {
-        $stack = $this->createMock(Stack::class);
-        $expectedItem = 'testItem';
+        $mock = $this->createMock(Stack::class);
+        $mock->method('peek')->willReturn('element');
 
-        $stack->expects($this->once())
-            ->method('peek')
-            ->willReturn($expectedItem);
-
-        $this->assertEquals($expectedItem, $stack->peek());
-    }
-
-    public function testIsEmpty(): void
-    {
-        $stack = $this->createMock(Stack::class);
-
-        $stack->expects($this->once())
-            ->method('isEmpty')
-            ->willReturn(true);
-
-        $this->assertTrue($stack->isEmpty());
+        $this->assertSame('element', $mock->peek());
     }
 }
