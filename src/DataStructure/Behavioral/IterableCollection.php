@@ -12,6 +12,7 @@ use KaririCode\Contract\DataStructure\Behavioral\Iterator;
  * Provides the ability to iterate over a collection.
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
+ * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
  * @see      https://kariricode.org/
@@ -21,7 +22,7 @@ interface IterableCollection extends \Traversable
     /**
      * Gets an iterator for the collection.
      *
-     * @return \Traversable an iterator for the collection
+     * @return \Iterator an iterator for the collection
      */
-    public function getIterator(): \Traversable;
+    public function getIterator(): \Iterator;
 }

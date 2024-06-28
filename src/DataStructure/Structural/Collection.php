@@ -6,7 +6,6 @@ namespace KaririCode\Contract\DataStructure\Structural;
 
 use KaririCode\Contract\DataStructure\Behavioral\Countable;
 use KaririCode\Contract\DataStructure\Behavioral\Indexable;
-use KaririCode\Contract\DataStructure\Behavioral\IterableCollection;
 
 /**
  * Interface Collection.
