@@ -7,61 +7,38 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Map.
  *
- * Defines the contract for a map data structure.
+ * Defines the contract for map data structures, which store key-value pairs.
  *
+ * @package   KaririCode\Contract\DataStructure
+ * @category  Interfaces
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
- *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
-interface Map extends \Countable, \ArrayAccess
+interface Map
 {
     /**
      * Puts a key-value pair into the map.
      *
-     * @param mixed $key the key
-     * @param mixed $value the value
+     * @param mixed $key The key.
+     * @param mixed $value The value.
+     * @return void
      */
     public function put(mixed $key, mixed $value): void;
 
     /**
      * Gets a value by its key.
      *
-     * @param mixed $key the key
-     *
-     * @return mixed the value associated with the key
+     * @param mixed $key The key.
+     * @return mixed The value associated with the key.
      */
     public function get(mixed $key): mixed;
 
     /**
      * Removes a key-value pair from the map.
      *
-     * @param mixed $key the key to remove
-     *
-     * @return bool true if the pair was successfully removed, false otherwise
+     * @param mixed $key The key.
+     * @return bool True if the key-value pair was removed, false otherwise.
      */
     public function remove(mixed $key): bool;
-
-    /**
-     * Checks if the map contains a specific key.
-     *
-     * @param mixed $key the key to check
-     *
-     * @return bool true if the key exists, false otherwise
-     */
-    public function containsKey(mixed $key): bool;
-
-    /**
-     * Gets all keys in the map.
-     *
-     * @return array an array of all keys
-     */
-    public function keys(): array;
-
-    /**
-     * Gets all values in the map.
-     *
-     * @return array an array of all values
-     */
-    public function values(): array;
 }

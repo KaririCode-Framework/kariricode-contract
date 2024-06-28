@@ -7,40 +7,35 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Queue.
  *
- * Defines the contract for a queue data structure.
+ * Defines the contract for queue data structures, which follow the FIFO (First-In-First-Out) principle.
  *
+ * @package   KaririCode\Contract\DataStructure
+ * @category  Interfaces
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
- *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
-interface Queue extends \Countable
+interface Queue
 {
     /**
-     * Adds an item to the end of the queue.
+     * Enqueues an element into the queue.
      *
-     * @param mixed $item the item to add
+     * @param mixed $element The element to enqueue.
+     * @return void
      */
-    public function enqueue(mixed $item): void;
+    public function enqueue(mixed $element): void;
 
     /**
-     * Removes and returns the item at the front of the queue.
+     * Dequeues an element from the queue.
      *
-     * @return mixed the item at the front of the queue
+     * @return mixed The dequeued element.
      */
     public function dequeue(): mixed;
 
     /**
-     * Gets the item at the front of the queue without removing it.
+     * Returns the front element without removing it.
      *
-     * @return mixed the item at the front of the queue
+     * @return mixed The front element.
      */
-    public function front(): mixed;
-
-    /**
-     * Checks if the queue is empty.
-     *
-     * @return bool true if the queue is empty, false otherwise
-     */
-    public function isEmpty(): bool;
+    public function peek(): mixed;
 }

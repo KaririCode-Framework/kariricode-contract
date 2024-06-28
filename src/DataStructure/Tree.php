@@ -7,44 +7,54 @@ namespace KaririCode\Contract\DataStructure;
 /**
  * Interface Tree.
  *
- * Defines the contract for a tree data structure.
+ * Defines the contract for tree data structures.
  *
+ * @package   KaririCode\Contract\DataStructure
+ * @category  Interfaces
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
- *
- * @see      https://kariricode.org/
+ * @see       https://kariricode.org/
  */
 interface Tree
 {
     /**
-     * Inserts a value into the tree.
+     * Adds a value to the tree.
      *
-     * @param mixed $value the value to insert
+     * @param mixed $value The value to add.
+     * @return void
      */
-    public function insert(mixed $value): void;
+    public function add(mixed $value): void;
 
     /**
-     * Searches for a value in the tree.
+     * Inserts a value into the tree at the specified position.
      *
-     * @param mixed $value the value to search for
-     *
-     * @return object|null the node containing the value, or null if not found
+     * @param int $index The index at which to insert the value.
+     * @param mixed $value The value to insert.
+     * @return void
      */
-    public function search(mixed $value): ?object;
+    public function insert(int $index, mixed $value): void;
 
     /**
-     * Deletes a value from the tree.
+     * Removes a value from the tree.
      *
-     * @param mixed $value the value to delete
-     *
-     * @return bool true if the value was successfully deleted, false otherwise
+     * @param mixed $value The value to remove.
+     * @return bool True if the value was removed, false otherwise.
      */
-    public function delete(mixed $value): bool;
+    public function remove(mixed $value): bool;
 
     /**
-     * Performs an in-order traversal of the tree.
+     * Finds a value in the tree.
      *
-     * @return \Generator a generator for the in-order traversal
+     * @param mixed $value The value to find.
+     * @return mixed|null The found value or null if not found.
      */
-    public function inOrderTraversal(): \Generator;
+    public function find(mixed $value): mixed;
+
+    /**
+     * Checks if the tree contains a specific value.
+     *
+     * @param mixed $value The value to check.
+     * @return bool True if the value is found, false otherwise.
+     */
+    public function contains(mixed $value): bool;
 }
