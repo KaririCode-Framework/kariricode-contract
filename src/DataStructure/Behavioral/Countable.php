@@ -23,5 +23,5 @@ interface Countable
      *
      * @return int The number of elements
      */
-    public function count(): int;
+    public function size(): int;
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\DataStructure;
 
+use KaririCode\Contract\DataStructure\Behavioral\Modifiable;
+
 /**
  * Interface Queue.
  *
@@ -16,7 +18,7 @@ namespace KaririCode\Contract\DataStructure;
  *
  * @see       https://kariricode.org/
  */
-interface Queue
+interface Queue extends Modifiable
 {
     /**
      * Enqueues an element into the queue.

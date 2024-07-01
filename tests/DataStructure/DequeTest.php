@@ -56,20 +56,4 @@ final class DequeTest extends TestCase
 
         $this->assertSame('element', $mock->peekLast());
     }
-
-    public function testIsEmpty(): void
-    {
-        $mock = $this->createMock(Deque::class);
-        $mock->method('isEmpty')->willReturn(true);
-
-        $this->assertTrue($mock->isEmpty());
-    }
-
-    public function testSize(): void
-    {
-        $mock = $this->createMock(Deque::class);
-        $mock->method('size')->willReturn(0);
-
-        $this->assertSame(0, $mock->size());
-    }
 }

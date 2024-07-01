@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\DataStructure;
 
+use KaririCode\Contract\DataStructure\Behavioral\Countable;
+use KaririCode\Contract\DataStructure\Behavioral\IterableCollection;
+
 /**
  * Interface Map.
  *
@@ -16,37 +19,59 @@ namespace KaririCode\Contract\DataStructure;
  *
  * @see       https://kariricode.org/
  */
-interface Map
+interface Map extends Countable, IterableCollection
 {
     /**
-     * Puts a key-value pair into the map.
+     * Adds a key-value pair to the map.
      *
-     * @param mixed $key the key
-     * @param mixed $value the value
+     * @param mixed $key The key to add
+     * @param mixed $value The value to add
      */
     public function put(mixed $key, mixed $value): void;
 
     /**
-     * Gets a value by its key.
+     * Retrieves a value by its key.
      *
-     * @param mixed $key the key
+     * @param mixed $key The key to retrieve the value for
      *
-     * @return mixed the value associated with the key
+     * @return mixed The value associated with the key
      */
     public function get(mixed $key): mixed;
 
     /**
      * Removes a key-value pair from the map.
      *
-     * @param mixed $key the key
+     * @param mixed $key The key to remove
      *
      * @return bool true if the key-value pair was removed, false otherwise
      */
     public function remove(mixed $key): bool;
+
     /**
-     * Returns the number of key-value mappings in the map.
+     * Checks if the map contains a specific key.
      *
-     * @return int the number of key-value mappings
+     * @param mixed $key The key to check for
+     *
+     * @return bool true if the key is present, false otherwise
      */
-    public function size(): int;
+    public function containsKey(mixed $key): bool;
+
+    /**
+     * Returns all keys in the map.
+     *
+     * @return array The keys in the map
+     */
+    public function keys(): array;
+
+    /**
+     * Returns all values in the map.
+     *
+     * @return array The values in the map
+     */
+    public function values(): array;
+
+    /**
+     * Clears all key-value pairs from the map.
+     */
+    public function clear(): void;
 }

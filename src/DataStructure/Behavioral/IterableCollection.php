@@ -9,7 +9,8 @@ namespace KaririCode\Contract\DataStructure\Behavioral;
  *
  * Provides the ability to iterate over a collection.
  *
- * @author    Walmir Silva <walmir.silva@kariricode.org>
+ * @category  Interfaces
+ *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
