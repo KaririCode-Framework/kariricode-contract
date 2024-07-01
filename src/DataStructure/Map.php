@@ -43,4 +43,10 @@ interface Map
      * @return bool true if the key-value pair was removed, false otherwise
      */
     public function remove(mixed $key): bool;
+    /**
+     * Returns the number of key-value mappings in the map.
+     *
+     * @return int the number of key-value mappings
+     */
+    public function size(): int;
 }
