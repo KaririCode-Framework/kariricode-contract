@@ -19,37 +19,19 @@ namespace KaririCode\Contract\DataStructure\Behavioral;
 interface Indexable
 {
     /**
-     * Checks if an element exists at the given index.
+     * Retrieves an element at the specified index.
      *
-     * @param int $index The index to check
-     *
-     * @return bool True if the index exists, false otherwise
-     */
-    public function contains(int $index): bool;
-
-    /**
-     * Gets the element at the specified index.
-     *
-     * @param int $index The index of the element
+     * @param int $index The index of the element to retrieve
      *
      * @return mixed The element at the specified index
      */
     public function get(int $index): mixed;
 
     /**
-     * Sets the element at the specified index.
+     * Sets an element at the specified index.
      *
-     * @param int $index The index at which to set the element
+     * @param int $index The index where the element should be set
      * @param mixed $element The element to set
      */
     public function set(int $index, mixed $element): void;
-
-    /**
-     * Removes the element at the specified index.
-     *
-     * @param int $index The index of the element to remove
-     *
-     * @return bool True if the element was removed, false otherwise
-     */
-    public function remove(int $index): bool;
 }

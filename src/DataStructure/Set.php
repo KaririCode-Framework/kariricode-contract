@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\DataStructure;
 
+use KaririCode\Contract\DataStructure\Behavioral\Modifiable;
+use KaririCode\Contract\DataStructure\Behavioral\Searchable;
+
 /**
  * Interface Set.
  *
@@ -16,51 +19,32 @@ namespace KaririCode\Contract\DataStructure;
  *
  * @see       https://kariricode.org/
  */
-interface Set
+interface Set extends Modifiable, Searchable
 {
     /**
-     * Adds an element to the set.
+     * Performs a union of this set with another set.
      *
-     * @param mixed $element The element to add
+     * @param Set $other The other set to union with
      *
-     * @return bool True if the element was added, false if it was already present
+     * @return Set The resulting set after the union
      */
-    public function add(mixed $element): bool;
+    public function union(Set $other): Set;
 
     /**
-     * Removes an element from the set.
+     * Performs an intersection of this set with another set.
      *
-     * @param mixed $element The element to remove
+     * @param Set $other The other set to intersect with
      *
-     * @return bool True if the element was removed, false if it was not present
+     * @return Set The resulting set after the intersection
      */
-    public function remove(mixed $element): bool;
+    public function intersection(Set $other): Set;
 
     /**
-     * Checks if the set contains a specific element.
+     * Performs a difference of this set with another set.
      *
-     * @param mixed $element The element to check for
+     * @param Set $other The other set to differentiate with
      *
-     * @return bool True if the element is present, false otherwise
+     * @return Set The resulting set after the difference
      */
-    public function contains(mixed $element): bool;
-
-    /**
-     * Removes all elements from the set.
-     */
-    public function clear(): void;
-
-    /**
-     * Returns the number of elements in the set.
-     *
-     * @return int The number of elements in the set
-     */
-    public function size(): int;
-
-    /**
-     * Checks if the set is empty.
-     *
-     * @return bool True if the set is empty, false otherwise
-     */
-    public function isEmpty(): bool;
+    public function difference(Set $other): Set;
 }

@@ -49,20 +49,4 @@ final class CollectionTest extends TestCase
 
         $mock->clear();
     }
-
-    public function testIsEmpty(): void
-    {
-        $mock = $this->createMock(Collection::class);
-        $mock->method('isEmpty')->willReturn(true);
-
-        $this->assertTrue($mock->isEmpty());
-    }
-
-    public function testGetItems(): void
-    {
-        $mock = $this->createMock(Collection::class);
-        $mock->method('getItems')->willReturn(['element1', 'element2']);
-
-        $this->assertSame(['element1', 'element2'], $mock->getItems());
-    }
 }

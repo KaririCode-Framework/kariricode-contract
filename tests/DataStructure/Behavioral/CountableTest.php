@@ -9,11 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 final class CountableTest extends TestCase
 {
-    public function testCount(): void
+    public function testSize(): void
     {
         $mock = $this->createMock(Countable::class);
-        $mock->method('count')->willReturn(5);
+        $mock->method('size')->willReturn(5);
 
-        $this->assertSame(5, $mock->count());
+        $this->assertSame(5, $mock->size());
     }
 }
