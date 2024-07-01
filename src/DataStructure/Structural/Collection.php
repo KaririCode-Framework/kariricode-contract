@@ -29,4 +29,11 @@ interface Collection extends Countable, Indexable, Modifiable, Searchable
      * @param Collection $collection The collection whose elements are to be added
      */
     public function addAll(Collection $collection): void;
+
+    /**
+     * Returns an array containing all elements in the collection.
+     *
+     * @return array The elements in the collection
+     */
+    public function getItems(): array;
 }
