@@ -11,6 +11,7 @@ namespace KaririCode\Contract\DataStructure;
  *
  * @category  Interfaces
  *
+ * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
  *
  * @see       https://kariricode.org/
