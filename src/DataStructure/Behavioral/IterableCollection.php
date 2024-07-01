@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\DataStructure\Behavioral;
 
-use KaririCode\Contract\DataStructure\Behavioral\Iterator;
-
 /**
  * Interface IterableCollection.
  *

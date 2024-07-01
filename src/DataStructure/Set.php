@@ -11,8 +11,6 @@ namespace KaririCode\Contract\DataStructure;
  *
  * @category  Interfaces
  *
- * @package   KaririCode\Contract\DataStructure
- *
  * @license   MIT
  *
  * @see       https://kariricode.org/
