@@ -59,7 +59,6 @@ final class DequeTest extends TestCase
 
     public function testIsEmpty(): void
     {
-
         $mock = $this->createMock(Deque::class);
         $mock->method('isEmpty')->willReturn(true);
 
