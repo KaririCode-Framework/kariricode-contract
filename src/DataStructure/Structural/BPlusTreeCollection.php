@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\DataStructure;
+namespace KaririCode\Contract\DataStructure\Structural;
 
 use KaririCode\Contract\DataStructure\Behavioral\Sortable;
-use KaririCode\Contract\DataStructure\Structural\Collection;
+use KaririCode\Contract\DataStructure\Tree;
 
 /**
  * Interface BPlusTreeCollection.
