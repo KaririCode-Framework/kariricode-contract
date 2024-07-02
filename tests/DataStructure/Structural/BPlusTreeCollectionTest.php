@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Tests\Contract\DataStructure;
+namespace KaririCode\Tests\Contract\DataStructure\Structural;
 
-use KaririCode\Contract\DataStructure\BPlusTreeCollection;
+use KaririCode\Contract\DataStructure\Structural\BPlusTreeCollection;
 use PHPUnit\Framework\TestCase;
 
 final class BPlusTreeCollectionTest extends TestCase
