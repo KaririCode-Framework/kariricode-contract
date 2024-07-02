@@ -1,4 +1,4 @@
-# KaririCode Contract
+# KaririCode Framework: Contract Component
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt-br.md)
@@ -10,18 +10,148 @@
 
 ## Overview
 
-The `kariricode/contract` package provides a set of standardized interfaces for common data structures and patterns within the KaririCode Framework. This library ensures consistency and interoperability across various components of the KaririCode ecosystem, following PSR standards and utilizing modern PHP practices.
+The Contract component is a fundamental part of the KaririCode Framework, providing a comprehensive set of interfaces that define contracts for various data structures and behaviors. These interfaces serve as the foundation for implementing robust, consistent, and interoperable data structure components within and beyond the KaririCode ecosystem.
 
-## Features
+## Key Features
 
-- **🗂️ PSR Standards**: Adheres to PHP-FIG PSR standards for interoperability.
-- **📚 Comprehensive Interfaces**: Includes interfaces for common data structures such as Collection, Heap, Map, Queue, Stack, and Tree.
-- **🚀 Modern PHP**: Utilizes PHP 8.3 features to ensure type safety and modern coding practices.
-- **🔍 High Quality**: Ensures code quality and security through rigorous testing and analysis tools.
+- **Comprehensive Set of Interfaces**: Covers a wide range of data structures and behaviors.
+- **Type Safety**: Leverages PHP 8.3+ features for better type checking and higher code reliability.
+- **Flexibility**: Allows multiple implementations of the same interface, promoting code reuse and modularity.
+- **Standardization**: Provides a consistent API across different implementations.
+
+## Available Interfaces and Their Applications
+
+### Structural Interfaces
+
+#### Collection
+
+Defines the contract for a collection of elements. Ideal for implementing lists, sets, and other custom collections.
+
+**Suggested Applications:**
+
+- Implementing a product catalog in an e-commerce site.
+- Managing a task list in a productivity app.
+
+#### Map
+
+Defines the contract for map data structures, which store key-value pairs.
+
+**Suggested Applications:**
+
+- Implementing an in-memory data cache.
+- Managing user sessions in a web application.
+
+#### Set
+
+Defines the contract for set data structures, which do not allow duplicate elements.
+
+**Suggested Applications:**
+
+- Maintaining a unique list of tags in a blog system.
+- Implementing a spam filter based on IP addresses.
+
+#### Queue
+
+Defines the contract for queue data structures, which follow the FIFO (First-In-First-Out) principle.
+
+**Suggested Applications:**
+
+- Order processing system in a restaurant.
+- Task management in a print system.
+
+#### Stack
+
+Defines the contract for stack data structures, which follow the LIFO (Last-In-First-Out) principle.
+
+**Suggested Applications:**
+
+- Implementing a browser history in a web browser.
+- Managing function calls in a programming language interpreter.
+
+#### Tree
+
+Defines the contract for tree data structures.
+
+**Suggested Applications:**
+
+- Representing hierarchical structures such as product categories.
+- Implementing a virtual file system.
+
+#### Heap
+
+Defines the contract for heap data structures.
+
+**Suggested Applications:**
+
+- Implementing a priority queue in a customer service system.
+- Optimizing sorting and search algorithms.
+
+#### Deque
+
+Extends the Queue interface to define the contract for double-ended queue structures.
+
+**Suggested Applications:**
+
+- Implementing a circular buffer for stream processing.
+- Developing a card game where cards can be added or removed from both ends.
+
+### Behavioral Interfaces
+
+#### Countable, Indexable, Modifiable, Searchable
+
+These interfaces define common behaviors that can be applied to various data structures.
+
+**Suggested Applications:**
+
+- Implementing custom collections with specific functionalities.
+- Developing wrappers for existing data structures to add new features.
+
+#### Sortable, Comparable
+
+Define contracts for objects that can be sorted and compared.
+
+**Suggested Applications:**
+
+- Implementing custom sorting algorithms.
+- Developing ordered data structures, such as binary search trees.
+
+#### IterableCollection, Iterator
+
+Provide the ability to iterate over a collection.
+
+**Suggested Applications:**
+
+- Implementing custom collections that can be used in foreach loops.
+- Developing specialized iterators to traverse complex data structures.
+
+### Specialized Interfaces
+
+#### BPlusTreeCollection
+
+Defines the contract for B+ tree data structures.
+
+**Suggested Applications:**
+
+- Implementing database indexes for fast queries.
+- Optimizing file systems for quick access to large volumes of data.
+
+#### Serializable
+
+Defines the contract for serializing and deserializing data.
+
+**Suggested Applications:**
+
+- Implementing a cache system that can store complex objects.
+- Developing a custom data persistence mechanism.
 
 ## Installation
 
-You can install the package via Composer:
+### Requirements
+
+- PHP 8.3 or higher
+- Composer
+
+### Via Composer
 
 ```bash
 composer require kariricode/contract
@@ -29,143 +159,35 @@ composer require kariricode/contract
 
 ## Usage
 
-Implement the provided interfaces in your classes to ensure consistent and reliable functionality across different components of the KaririCode Framework.
-
-Example of implementing the `CollectionList` interface:
+To use these interfaces in your project, simply implement them in your classes. For example:
 
 ```php
-<?php
+use KaririCode\Contract\DataStructure\Collection;
 
-declare(strict_types=1);
-
-namespace YourNamespace;
-
-use KaririCode\Contract\DataStructure\CollectionList;
-
-class MyCollection implements CollectionList
+class MyCollection implements Collection
 {
-    private array $items = [];
-
-    public function add(mixed $item): void
-    {
-        $this->items[] = $item;
-    }
-
-    public function remove(mixed $item): bool
-    {
-        $index = array_search($item, $this->items, true);
-        if ($index === false) {
-            return false;
-        }
-        unset($this->items[$index]);
-        return true;
-    }
-
-    public function get(int $index): mixed
-    {
-        return $this->items[$index] ?? null;
-    }
-
-    public function clear(): void
-    {
-        $this->items = [];
-    }
-
-    public function getIterator(): \Traversable
-    {
-        return new \ArrayIterator($this->items);
-    }
-
-    public function count(): int
-    {
-        return count($this->items);
-    }
-
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->items[$offset]);
-    }
-
-    public function offsetGet(mixed $offset): mixed
-    {
-        return $this->items[$offset] ?? null;
-    }
-
-    public function offsetSet(mixed $offset, mixed $value): void
-    {
-        if ($offset === null) {
-            $this->items[] = $value;
-        } else {
-            $this->items[$offset] = $value;
-        }
-    }
-
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->items[$offset]);
-    }
+    // Implement the methods defined in the Collection interface
 }
 ```
-
-## Development Environment
-
-### Docker
-
-To maintain consistency and ensure the environment's integrity, we provide a Docker setup:
-
-- **🐳 Docker Compose**: Used to manage multi-container Docker applications.
-- **📦 Dockerfile**: Defines the Docker image for the PHP environment.
-
-To start the environment:
-
-```bash
-make up
-```
-
-### Makefile
-
-We include a `Makefile` to streamline common development tasks:
-
-- **Start services**: `make up`
-- **Stop services**: `make down`
-- **Run tests**: `make test`
-- **Install dependencies**: `make composer-install`
-- **Run code style checks**: `make cs-check`
-- **Fix code style issues**: `make cs-fix`
-- **Security checks**: `make security-check`
-
-For a complete list of commands, run:
-
-```bash
-make help
-```
-
-## Testing
-
-To run the tests, you can use the following command:
-
-```bash
-make test
-```
-
-## Contributing
-
-Contributions are welcome! Please read our [contributing guidelines](CONTRIBUTING.md) for details on the process for submitting pull requests.
-
-## Support
-
-For any issues, please visit our [issue tracker](https://github.com/Kariri-PHP-Framework/kariri-contract/issues).
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## About KaririCode
+## Support and Community
 
-The KaririCode Framework is a modern, robust, and scalable PHP framework designed to streamline web development by providing a comprehensive set of tools and components. For more information, visit the [KaririCode website](https://kariricode.org/).
+- **Documentation**: [https://kariricode.org](https://kariricode.org)
+- **Issue Tracker**: [GitHub Issues](https://github.com/KaririCode-Framework/kariricode-contract/issues)
+- **Community**: [KaririCode Club Community](https://kariricode.club)
+- **Professional Support**: For enterprise-level support, contact us at support@kariricode.org
 
-Join the KaririCode Club for access to exclusive content, community support, and advanced tutorials on PHP and the KaririCode Framework. Learn more at [KaririCode Club](https://kariricode.org/club).
+## Acknowledgments
+
+- The KaririCode Framework team and contributors.
+- The PHP community for their continuous support and inspiration.
 
 ---
+
+Built with ❤️ by the KaririCode team. Empowering developers to build more robust and flexible PHP applications.
 
 Maintained by Walmir Silva - [walmir.silva@kariricode.org](mailto:walmir.silva@kariricode.org)
