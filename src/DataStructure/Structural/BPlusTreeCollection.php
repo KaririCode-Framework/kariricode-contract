@@ -12,7 +12,7 @@ use KaririCode\Contract\DataStructure\Tree;
  *
  * Defines the contract for B+ Tree data structures.
  *
- * @category  Interfaces
+ * @category  DataStructure\Structural
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

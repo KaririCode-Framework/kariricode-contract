@@ -9,7 +9,7 @@ namespace KaririCode\Contract\DataStructure\Behavioral;
  *
  * Defines the contract for modifying elements in a collection.
  *
- * @category  Interfaces
+ * @category  DataStructure\Behavioral
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

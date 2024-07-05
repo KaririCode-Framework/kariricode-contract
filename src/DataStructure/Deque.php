@@ -10,7 +10,7 @@ namespace KaririCode\Contract\DataStructure;
  * Extends the Queue interface to define the contract for double-ended queue data structures,
  * which allow elements to be added and removed from both ends.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

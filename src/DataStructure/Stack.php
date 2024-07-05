@@ -9,7 +9,7 @@ namespace KaririCode\Contract\DataStructure;
  *
  * Defines the contract for stack data structures, which follow the LIFO (Last-In-First-Out) principle.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

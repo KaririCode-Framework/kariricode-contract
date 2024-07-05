@@ -11,7 +11,7 @@ namespace KaririCode\Contract\DataStructure\Behavioral;
  * Classes implementing this interface should provide an implementation
  * for the sort method to allow sorting of their elements.
  *
- * @category  Interfaces
+ * @category  DataStructure\Behavioral
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

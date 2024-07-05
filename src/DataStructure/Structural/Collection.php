@@ -14,7 +14,7 @@ use KaririCode\Contract\DataStructure\Behavioral\Searchable;
  *
  * Defines the contract for a collection of elements.
  *
- * @category  Interfaces
+ * @category  DataStructure\Structural
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

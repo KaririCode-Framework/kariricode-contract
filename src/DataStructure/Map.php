@@ -12,7 +12,7 @@ use KaririCode\Contract\DataStructure\Behavioral\IterableCollection;
  *
  * Defines the contract for map data structures, which store key-value pairs.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
