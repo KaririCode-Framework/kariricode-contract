@@ -10,7 +10,7 @@ namespace KaririCode\Contract\DataStructure;
  * Defines the contract for heap data structures.
  * A heap is a specialized tree-based data structure that satisfies the heap property.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

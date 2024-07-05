@@ -11,7 +11,7 @@ use KaririCode\Contract\DataStructure\Behavioral\Modifiable;
  *
  * Defines the contract for queue data structures, which follow the FIFO (First-In-First-Out) principle.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT

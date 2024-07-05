@@ -12,7 +12,7 @@ use KaririCode\Contract\DataStructure\Behavioral\Searchable;
  *
  * Defines the contract for tree data structures.
  *
- * @category  Interfaces
+ * @category  DataStructure
  *
  * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
