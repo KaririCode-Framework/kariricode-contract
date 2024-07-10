@@ -31,4 +31,13 @@ interface LogFormatter
      * @return string the formatted log record as a string
      */
     public function format(ImmutableValue $record): string;
+
+    /**
+     * Formats a set of log records.
+     *
+     * @param ImmutableValue[] $records
+     *
+     * @return string The formatted log records
+     */
+    public function formatBatch(array $records): string;
 }

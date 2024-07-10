@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Logging;
 
+use KaririCode\Contract\ImmutableValue;
+
 /**
  * Interface LogProcessor.
  *
@@ -32,5 +34,5 @@ interface LogProcessor
      *
      * @return array the processed log record
      */
-    public function process(array $record): array;
+    public function process(ImmutableValue $record): ImmutableValue;
 }

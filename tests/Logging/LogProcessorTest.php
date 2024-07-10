@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KaririCode\Contract\Tests\Logging;
 
+use KaririCode\Contract\ImmutableValue;
 use KaririCode\Contract\Logging\LogProcessor;
 use PHPUnit\Framework\TestCase;
 
@@ -11,8 +12,8 @@ final class LogProcessorTest extends TestCase
 {
     public function testProcess(): void
     {
-        $record = ['message' => 'Test log message'];
-        $processedRecord = ['message' => 'Test log message', 'processed' => true];
+        $record = $this->createMock(ImmutableValue::class);
+        $processedRecord = $this->createMock(ImmutableValue::class);
         $logProcessorMock = $this->createMock(LogProcessor::class);
 
         $logProcessorMock->expects($this->once())

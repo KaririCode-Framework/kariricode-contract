@@ -23,4 +23,21 @@ final class LogFormatterTest extends TestCase
 
         $this->assertSame($formattedRecord, $formatterMock->format($recordMock));
     }
+
+    public function testFormatBatch(): void
+    {
+        $recordMock1 = $this->createMock(ImmutableValue::class);
+        $recordMock2 = $this->createMock(ImmutableValue::class);
+        $records = [$recordMock1, $recordMock2];
+        $formattedRecords = 'Formatted log records';
+
+        $formatterMock = $this->createMock(LogFormatter::class);
+
+        $formatterMock->expects($this->once())
+            ->method('formatBatch')
+            ->with($this->equalTo($records))
+            ->willReturn($formattedRecords);
+
+        $this->assertSame($formattedRecords, $formatterMock->formatBatch($records));
+    }
 }
