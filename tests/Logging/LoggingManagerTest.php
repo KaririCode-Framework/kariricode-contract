@@ -109,6 +109,11 @@ final class LoggingManagerTest extends TestCase
             {
                 return 'formatted';
             }
+
+            public function formatBatch(array $records): string
+            {
+                return 'formatted batch';
+            }
         };
 
         $loggingManagerMock = $this->createMock(LoggingManager::class);
@@ -130,6 +135,11 @@ final class LoggingManagerTest extends TestCase
             public function format(ImmutableValue $record): string
             {
                 return 'formatted';
+            }
+
+            public function formatBatch(array $records): string
+            {
+                return 'formatted batch';
             }
         };
 
