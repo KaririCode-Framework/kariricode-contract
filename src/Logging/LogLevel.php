@@ -25,4 +25,11 @@ interface LogLevel
      * @return string the log level
      */
     public function getLevel(): string;
+
+    /**
+     * Gets the log level as a int level
+     *
+     * @return int the log level
+     */
+    public function getValue(): int;
 }

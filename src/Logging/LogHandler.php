@@ -31,12 +31,13 @@ interface LogHandler
      * This method is responsible for handling the log record, performing tasks such as
      * writing it to a file, sending it over the network, or any other logging behavior.
      *
-     * @param array $record the log record to be processed, represented as an associative array
+     * @param ImmutableValue $record the log record to be processed, represented as an associative array
      */
     public function handle(ImmutableValue $record): void;
 
     /**
      * Checks whether the handler is handling the given log level.
+     * @param ImmutableValue $record the log record to be processed, represented as an associative array
      */
     public function isHandling(ImmutableValue $record): bool;
 }

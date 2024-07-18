@@ -18,4 +18,5 @@ use KaririCode\Contract\Logging\Behavioral\Loggable;
  */
 interface Logger extends Loggable
 {
+    public function getName(): string;
 }
