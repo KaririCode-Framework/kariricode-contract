@@ -21,11 +21,11 @@ interface Indexable
     /**
      * Retrieves an element at the specified index.
      *
-     * @param int $index The index of the element to retrieve
+     * @param mixed $index The index of the element to retrieve
      *
      * @return mixed The element at the specified index
      */
-    public function get(int $index): mixed;
+    public function get(mixed $index): mixed;
 
     /**
      * Sets an element at the specified index.
@@ -33,5 +33,5 @@ interface Indexable
      * @param int $index The index where the element should be set
      * @param mixed $element The element to set
      */
-    public function set(int $index, mixed $element): void;
+    public function set(mixed $index, mixed $element): void;
 }

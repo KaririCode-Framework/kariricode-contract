@@ -27,7 +27,14 @@ interface LogLevel
     public function getLevel(): string;
 
     /**
-     * Gets the log level as a int level
+     * Gets the color level as a string.
+     *
+     * @return string the color level
+     */
+    public function getColor(): string;
+
+    /**
+     * Gets the log level as a int level.
      *
      * @return int the log level
      */

@@ -21,6 +21,7 @@ namespace KaririCode\Contract\Logging;
 interface LogRotator
 {
     public function shouldRotate(string $filePath): bool;
+
     /**
      * Rotates a log file.
      *
@@ -30,5 +31,4 @@ interface LogRotator
      * @param string $filename the name of the log file to be rotated
      */
     public function rotate(string $filename): void;
-
 }
