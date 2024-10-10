@@ -37,7 +37,6 @@ interface LogHandler
 
     /**
      * Checks whether the handler is handling the given log level.
-     *
      * @param ImmutableValue $record the log record to be processed, represented as an associative array
      */
     public function isHandling(ImmutableValue $record): bool;
