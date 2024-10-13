@@ -104,7 +104,7 @@ final class LoggingManagerTest extends TestCase
 
     public function testSetFormatter(): void
     {
-        $formatterMock = new class() implements LogFormatter, ImmutableValue {
+        $formatterMock = new class implements LogFormatter, ImmutableValue {
             public function format(ImmutableValue $record): string
             {
                 return 'formatted';
@@ -131,7 +131,7 @@ final class LoggingManagerTest extends TestCase
 
     public function testGetFormatter(): void
     {
-        $formatterMock = new class() implements LogFormatter, ImmutableValue {
+        $formatterMock = new class implements LogFormatter, ImmutableValue {
             public function format(ImmutableValue $record): string
             {
                 return 'formatted';
