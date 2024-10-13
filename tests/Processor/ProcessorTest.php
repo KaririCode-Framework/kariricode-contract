@@ -11,6 +11,7 @@ final class ProcessorTest extends TestCase
 {
     public function testProcess(): void
     {
+        /** @var Processor|MockObject */
         $mock = $this->createMock(Processor::class);
         $mock->expects($this->once())
             ->method('process')
