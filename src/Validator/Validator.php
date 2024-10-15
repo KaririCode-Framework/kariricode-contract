@@ -19,11 +19,11 @@ namespace KaririCode\Contract\Validator;
 interface Validator
 {
     /**
-     * Validates the provided input and returns a boolean indicating if the input is valid.
+     * Validates the provided input and returns the validated result.
      *
      * @param mixed $input The value to be validated
      *
-     * @return bool True if the input is valid, false otherwise
+     * @return mixed The validated result
      */
-    public function validate(mixed $input): bool;
+    public function validate(mixed $input): mixed;
 }
