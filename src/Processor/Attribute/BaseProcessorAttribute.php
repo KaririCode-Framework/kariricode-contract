@@ -6,12 +6,12 @@ namespace KaririCode\Contract\Processor\Attribute;
 
 abstract class BaseProcessorAttribute implements ProcessableAttribute, CustomizableMessageAttribute
 {
-    protected array $processors;
-    protected array $messages;
+    private readonly array $processors;
+    private readonly array $messages;
 
     public function __construct(array $processors, ?array $messages = null)
     {
-        $this->processors = $this->normalizeProcessors($processors);
+        $this->processors = self::filterValidProcessors($processors);
         $this->messages = $messages ?? [];
     }
 
@@ -25,19 +25,8 @@ abstract class BaseProcessorAttribute implements ProcessableAttribute, Customiza
         return $this->messages[$processorName] ?? null;
     }
 
-    protected function normalizeProcessors(array $processors): array
+    private static function filterValidProcessors(array $processors): array
     {
-        $normalized = [];
-        foreach ($processors as $key => $value) {
-            if (is_int($key)) {
-                $normalized[$value] = [];
-            } elseif (is_string($value)) {
-                $normalized[$key] = [];
-            } else {
-                $normalized[$key] = $value;
-            }
-        }
-
-        return $normalized;
+        return array_filter($processors, static fn ($v) => null !== $v && false !== $v);
     }
 }
