@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\Tests\Processor;
+namespace KaririCode\Contract\Tests\Processor\Attribute;
 
-use KaririCode\Contract\Processor\ProcessableAttribute;
+use KaririCode\Contract\Processor\Attribute\ProcessableAttribute;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -21,18 +21,5 @@ final class ProcessableAttributeTest extends TestCase
             ->willReturn($processors);
 
         $this->assertSame($processors, $processableAttribute->getProcessors());
-    }
-
-    public function testGetFallbackValue(): void
-    {
-        /** @var ProcessableAttribute|MockObject */
-        $processableAttribute = $this->createMock(ProcessableAttribute::class);
-        $fallbackValue = 'default value';
-
-        $processableAttribute->expects($this->once())
-            ->method('getFallbackValue')
-            ->willReturn($fallbackValue);
-
-        $this->assertSame($fallbackValue, $processableAttribute->getFallbackValue());
     }
 }

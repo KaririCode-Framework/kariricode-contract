@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KaririCode\Contract\Processor;
+namespace KaririCode\Contract\Processor\Attribute;
 
 /**
  * Interface ProcessableAttribute.
@@ -24,11 +24,4 @@ interface ProcessableAttribute
      * @return array The list of processors
      */
     public function getProcessors(): array;
-
-    /**
-     * Provides a fallback value for the attribute if processing fails or is not available.
-     *
-     * @return mixed The fallback value
-     */
-    public function getFallbackValue(): mixed;
 }
