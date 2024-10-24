@@ -24,6 +24,16 @@ namespace KaririCode\Contract\Processor;
 interface ValidatableProcessor extends Processor
 {
     /**
+     * Resets the processor's state to its initial values.
+     *
+     * This method should be called before reusing the processor instance to ensure
+     * that any previous validation state is cleared and the processor is ready for
+     * new validation. This is particularly important when processors are reused
+     * across multiple validation cycles.
+     */
+    public function reset(): void;
+
+    /**
      * Checks if the processor is in a valid state.
      *
      * This method determines whether the processor has met all required
