@@ -15,8 +15,8 @@ use KaririCode\Contract\DataStructure\Map;
  *
  * @category  ProcessorPipeline
  *
- * @author    Walmir Silva <walmir.silva@kariricode.org>
  * @license   MIT
+ * @author    Walmir Silva <walmir.silva@kariricode.org>
  *
  * @see       https://kariricode.org/
  */
@@ -31,8 +31,10 @@ interface ProcessorRegistry
      * @param string $context The context under which the processor is registered
      * @param string $name The unique name of the processor within the context
      * @param Processor $processor The processor instance to be registered
+     *
+     * @return self Returns the current instance to enable a fluent interface
      */
-    public function register(string $context, string $name, Processor $processor): void;
+    public function register(string $context, string $name, Processor $processor): self;
 
     /**
      * Retrieves a processor by its context and name.
