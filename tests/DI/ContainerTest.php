@@ -73,4 +73,68 @@ final class ContainerTest extends TestCase
 
         $this->assertTrue($this->container->has('service.id'));
     }
+
+    public function testFactory(): void
+    {
+        $this->container->expects($this->once())
+            ->method('factory')
+            ->with('FactoryClass', 'ConcreteFactory', ['param1' => 'value1']);
+
+        $this->container->factory('FactoryClass', 'ConcreteFactory', ['param1' => 'value1']);
+    }
+
+    public function testTag(): void
+    {
+        $this->container->expects($this->once())
+            ->method('tag')
+            ->with('tag.name', ['abstract1', 'abstract2']);
+
+        $this->container->tag('tag.name', ['abstract1', 'abstract2']);
+    }
+
+    public function testTagged(): void
+    {
+        $this->container->expects($this->once())
+            ->method('tagged')
+            ->with('tag.name')
+            ->willReturn(['abstract1', 'abstract2']);
+
+        $this->assertEquals(['abstract1', 'abstract2'], $this->container->tagged('tag.name'));
+    }
+
+    public function testCall(): void
+    {
+        $callback = function ($param) {
+            return $param;
+        };
+
+        $this->container->expects($this->once())
+            ->method('call')
+            ->with($callback, ['param' => 'value'])
+            ->willReturn('value');
+
+        $this->assertEquals('value', $this->container->call($callback, ['param' => 'value']));
+    }
+
+    public function testExtend(): void
+    {
+        $extender = function ($service) {
+            return $service;
+        };
+
+        $this->container->expects($this->once())
+            ->method('extend')
+            ->with('abstract.id', $extender);
+
+        $this->container->extend('abstract.id', $extender);
+    }
+
+    public function testAlias(): void
+    {
+        $this->container->expects($this->once())
+            ->method('alias')
+            ->with('original.id', 'alias.id');
+
+        $this->container->alias('original.id', 'alias.id');
+    }
 }
