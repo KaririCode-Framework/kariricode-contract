@@ -32,7 +32,7 @@ interface Searchable
      *
      * @param mixed $element The element to find
      *
-     * @return int The index of the element
+     * @return mixed The index of the element if found, null otherwise
      */
     public function find(mixed $element): mixed;
 }
