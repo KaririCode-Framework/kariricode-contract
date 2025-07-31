@@ -18,33 +18,39 @@ use KaririCode\Contract\DataStructure\Behavioral\Searchable;
  * @license   MIT
  *
  * @see       https://kariricode.org/
+ *
+ * @template TValue O tipo de valor que o conjunto irá conter.
+ *
+ * @extends Modifiable<TValue>
+ * @extends Searchable<TValue>
+ * @extends \Traversable<int, TValue>
  */
-interface Set extends Modifiable, Searchable
+interface Set extends Modifiable, Searchable, \Traversable
 {
     /**
-     * Performs a union of this set with another set.
+     * Realiza a união deste conjunto com outro.
      *
-     * @param Set $other The other set to union with
+     * @param Set<TValue> $other o outro conjunto para a união
      *
-     * @return Set The resulting set after the union
+     * @return Set<TValue> o conjunto resultante da união
      */
     public function union(Set $other): Set;
 
     /**
-     * Performs an intersection of this set with another set.
+     * Realiza a interseção deste conjunto com outro.
      *
-     * @param Set $other The other set to intersect with
+     * @param Set<TValue> $other o outro conjunto para a interseção
      *
-     * @return Set The resulting set after the intersection
+     * @return Set<TValue> o conjunto resultante da interseção
      */
     public function intersection(Set $other): Set;
 
     /**
-     * Performs a difference of this set with another set.
+     * Realiza a diferença deste conjunto com outro.
      *
-     * @param Set $other The other set to differentiate with
+     * @param Set<TValue> $other o outro conjunto para a diferença
      *
-     * @return Set The resulting set after the difference
+     * @return Set<TValue> o conjunto resultante da diferença
      */
     public function difference(Set $other): Set;
 }
