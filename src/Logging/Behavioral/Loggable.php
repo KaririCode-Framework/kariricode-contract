@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace KaririCode\Contract\Logging\Behavioral;
 
 use KaririCode\Contract\Logging\LogLevel;
-use Psr\Log\LoggerInterface;
 
 /**
  * Loggable interface.
@@ -20,7 +19,7 @@ use Psr\Log\LoggerInterface;
  *
  * @see       https://kariricode.org/
  */
-interface Loggable extends LoggerInterface
+interface Loggable
 {
     /**
      * Logs with an arbitrary level.
@@ -28,10 +27,8 @@ interface Loggable extends LoggerInterface
      * @param LogLevel $level the log level
      * @param string|\Stringable $message the log message
      * @param array $context additional context for the log message
-     *
-     * @throws \Psr\Log\InvalidArgumentException
      */
-    public function log($level, string|\Stringable $message, array $context = []): void;
+    public function log(LogLevel $level, string|\Stringable $message, array $context = []): void;
 
     /**
      * Logs a debug message.
